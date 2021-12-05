@@ -1,0 +1,10 @@
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/bin/Debug/netcoreapp3.1/Models.deps.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/bin/Debug/netcoreapp3.1/Models.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/bin/Debug/netcoreapp3.1/Models.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.csproj.AssemblyReference.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.AssemblyInfoInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.AssemblyInfo.cs
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.csproj.CoreCompileInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/Debug/netcoreapp3.1/Models.pdb

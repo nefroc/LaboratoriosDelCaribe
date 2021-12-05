@@ -1,0 +1,15 @@
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/Services.deps.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/Services.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/Services.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/DataBaseContext.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/Models.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/DataBaseContext.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/netcoreapp3.1/Models.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.csproj.AssemblyReference.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.GeneratedMSBuildEditorConfig.editorconfig
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.AssemblyInfoInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.AssemblyInfo.cs
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.csproj.CoreCompileInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.csproj.CopyComplete
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/netcoreapp3.1/Services.pdb

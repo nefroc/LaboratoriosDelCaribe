@@ -1,0 +1,16 @@
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.csproj.AssemblyReference.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.GeneratedMSBuildEditorConfig.editorconfig
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.AssemblyInfoInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.AssemblyInfo.cs
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.csproj.CoreCompileInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/DataBaseContext.deps.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/DataBaseContext.runtimeconfig.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/DataBaseContext.runtimeconfig.dev.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/DataBaseContext.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/DataBaseContext.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/Models.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/bin/Debug/netcoreapp3.1/Models.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.csproj.CopyComplete
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/netcoreapp3.1/DataBaseContext.genruntimeconfig.cache

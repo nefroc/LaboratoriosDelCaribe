@@ -1,0 +1,12 @@
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/bin/Debug/net5.0/Tools.deps.json
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/bin/Debug/net5.0/Tools.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/bin/Debug/net5.0/ref/Tools.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/bin/Debug/net5.0/Tools.pdb
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.csproj.AssemblyReference.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.GeneratedMSBuildEditorConfig.editorconfig
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.AssemblyInfoInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.AssemblyInfo.cs
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.csproj.CoreCompileInputs.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/ref/Tools.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/Debug/net5.0/Tools.pdb

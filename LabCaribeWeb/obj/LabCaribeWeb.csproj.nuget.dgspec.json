@@ -1,0 +1,365 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/LabCaribeWeb.csproj": {}
+  },
+  "projects": {
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj",
+        "projectName": "DataBaseContext",
+        "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj",
+        "packagesPath": "/Users/neftalirodriguez/.nuget/packages/",
+        "outputPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/neftalirodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.0-alpha.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/LabCaribeWeb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/LabCaribeWeb.csproj",
+        "projectName": "LabCaribeWeb",
+        "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/LabCaribeWeb.csproj",
+        "packagesPath": "/Users/neftalirodriguez/.nuget/packages/",
+        "outputPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/neftalirodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj"
+              },
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj"
+              },
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj"
+              },
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/Tools.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/Tools.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.0-alpha.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj",
+        "projectName": "Models",
+        "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj",
+        "packagesPath": "/Users/neftalirodriguez/.nuget/packages/",
+        "outputPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/neftalirodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj",
+        "projectName": "Services",
+        "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj",
+        "packagesPath": "/Users/neftalirodriguez/.nuget/packages/",
+        "outputPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/neftalirodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/DataBaseContext.csproj"
+              },
+              "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj": {
+                "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Models/Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.14.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/Tools.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/Tools.csproj",
+        "projectName": "Tools",
+        "projectPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/Tools.csproj",
+        "packagesPath": "/Users/neftalirodriguez/.nuget/packages/",
+        "outputPath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Tools/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/neftalirodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
