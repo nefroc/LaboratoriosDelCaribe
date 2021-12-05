@@ -434,3 +434,7 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/Razor/Views/Login/Index.cshtml.g.cs
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Newtonsoft.Json.Bson.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

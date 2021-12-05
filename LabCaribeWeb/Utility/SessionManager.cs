@@ -78,5 +78,17 @@ namespace LabCaribeWeb.Utility
                 _session.SetInt32("IdPerfil", value);
             }
         }
+
+        public String Token
+        {
+            get
+            {
+                return _session.GetString("Token");
+            }
+            set
+            {
+                _session.SetString("Token", value);
+            }
+        }
     }
 }

@@ -1,22 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using DataBaseContext;
 using DataBaseContext.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Models.DTOs.Usuario;
 using Services.Interfaces;
+using Tools;
 
 namespace Services.Services
 {
     public class UsuarioService: IUsuarioService
     {
         private readonly LabDBContext _labDBContext;
+        private readonly AppSettings _appSettings;
 
-        public UsuarioService(LabDBContext labDBContext)
+        public UsuarioService(LabDBContext labDBContext, IOptions<AppSettings> appSettings)
         {
             _labDBContext = labDBContext;
+            _appSettings = appSettings.Value;
         }
 
+        [Authorize]
         public bool Add(Usuario usuario) {
             bool resultado = false;
             try
@@ -36,7 +46,7 @@ namespace Services.Services
             return resultado;
         }
 
-        public List<Usuario> GetAll() {
+        public List<Usuario> GetListaUsuarios() {
             return _labDBContext.Usuario.ToList();
         }
 
@@ -56,6 +66,7 @@ namespace Services.Services
                         usuarioLogueado.Correo = usuarioExiste.Correo;
                         usuarioLogueado.IdPerfil = usuarioExiste.IdPerfil;
                         usuarioLogueado.Mensaje = null;
+                        usuarioLogueado.Token = GetToken(usuarioLogueado);
                     }
                     else {
                         usuarioLogueado.Mensaje = "Password incorrecto.";
@@ -70,6 +81,31 @@ namespace Services.Services
             }
 
             return usuarioLogueado;
+        }
+
+        private string GetToken(UsuarioLogueadoDTO usuario)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var llave = Encoding.ASCII.GetBytes(_appSettings.KeySecretJWT);
+
+            var tokenDesriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
+                        new Claim(ClaimTypes.Email, usuario.Correo)
+                    }
+                    ),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256)
+
+            };
+
+            var token = tokenHandler.CreateToken(tokenDesriptor);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

@@ -27,5 +27,9 @@ namespace LabCaribeWeb.Utility
         {
             get; set;
         }
+
+        public String Token {
+            get; set;
+        }
     }
 }

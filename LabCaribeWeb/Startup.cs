@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Threading.Tasks;
 using DataBaseContext;
 using Microsoft.AspNetCore.Builder;
@@ -14,6 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using LabCaribeWeb.Utility;
 using Tools;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace LabCaribeWeb
 {
@@ -33,6 +37,42 @@ namespace LabCaribeWeb
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddMvc(opt => opt.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
             services.AddDistributedMemoryCache();
+
+            services.AddControllers()
+            .AddNewtonsoftJson(x =>
+            {
+                x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+            #region configuracion jwt
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var llave = Encoding.ASCII.GetBytes(appSettings.KeySecretJWT);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(llave),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            //Desabilita la autoreferencia
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            #endregion
 
 
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();

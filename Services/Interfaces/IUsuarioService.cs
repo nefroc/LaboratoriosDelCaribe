@@ -8,7 +8,7 @@ namespace Services.Interfaces
     public interface IUsuarioService
     {
         bool Add(Usuario usuario);
-        List<Usuario> GetAll();
+        List<Usuario> GetListaUsuarios();
         UsuarioLogueadoDTO Autenticacion(AccesoDTO login);
     }
 }

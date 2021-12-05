@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataBaseContext\DataBaseContext.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Tools\Tools.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Services\" />

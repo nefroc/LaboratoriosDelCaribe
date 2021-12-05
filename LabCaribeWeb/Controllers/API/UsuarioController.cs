@@ -26,5 +26,11 @@ namespace LabCaribeWeb.Controllers.API
                 return Problem(title: ex.Message, statusCode: 500);
             }
         }
+
+        [HttpGet("GetListaUsuarios")]
+        [Authorize]
+        public IActionResult GetListaUsuarios() {
+            return Ok(_usuarioService.GetListaUsuarios());
+        }
     }
 }

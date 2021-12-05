@@ -33,8 +33,6 @@ namespace LabCaribeWeb.Filters
                 {
                     context.Result = new RedirectResult("~/Login");
                 }
-
-
             }
 
         }

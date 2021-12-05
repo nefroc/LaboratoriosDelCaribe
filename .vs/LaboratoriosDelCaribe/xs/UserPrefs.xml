@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
+  <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="LabCaribeWeb/Controllers/API/UsuarioController.cs" Line="32" Column="46" />
+      <File FileName="Services/Services/UsuarioService.cs" Line="48" Column="1" />
+      <File FileName="Services/Interfaces/IUsuarioService.cs" Line="11" Column="39" />
+      <File FileName="LabCaribeWeb/Controllers/LoginController.cs" Line="1" Column="1" />
+      <File FileName="LabCaribeWeb/Controllers/API/MenuController.cs" Line="1" Column="1" />
+      <File FileName="LabCaribeWeb/Controllers/HomeController.cs" Line="20" Column="58" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LaboratoriosDelCaribe" expanded="True">
+            <Node name="LabCaribeWeb" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="API" expanded="True" />
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
+              <Node name="Filters" expanded="True" />
+              <Node name="Utility" expanded="True" />
+            </Node>
+            <Node name="Models" expanded="True" />
+            <Node name="Services" expanded="True">
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -48,6 +48,7 @@ namespace LabCaribeWeb.Controllers
                         _sessionManager.Apellidos = respuestaLogin.valor.Apellidos;
                         _sessionManager.Correo = respuestaLogin.valor.Correo;
                         _sessionManager.IdPerfil = respuestaLogin.valor.IdPerfil != null ? (int)respuestaLogin.valor.IdPerfil : 0;
+                        _sessionManager.Token = respuestaLogin.valor.Token;
 
                         List<PerfilMenuDTO> Menus = this.GetMenuPerfil(respuestaLogin.valor.IdPerfil != null ? (int)respuestaLogin.valor.IdPerfil : 0).GetAwaiter().GetResult();
 

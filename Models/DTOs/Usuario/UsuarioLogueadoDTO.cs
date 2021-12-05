@@ -9,5 +9,6 @@ namespace Models.DTOs.Usuario
         public string Apellidos { get; set; }
         public string Mensaje { get; set; }
         public int? IdPerfil { get; set; }
+        public string Token { get; set; }
     }
 }

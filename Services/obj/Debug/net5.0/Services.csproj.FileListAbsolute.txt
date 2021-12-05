@@ -15,3 +15,5 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/ref/Services.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.pdb
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.csproj.CopyComplete
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/net5.0/Tools.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/bin/Debug/net5.0/Tools.pdb
