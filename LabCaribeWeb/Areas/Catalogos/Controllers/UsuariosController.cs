@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DataBaseContext.Models;
 using LabCaribeWeb.Filters;
 using LabCaribeWeb.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Tools;
+using Models.DTOs.Usuario;
 
 namespace LabCaribeWeb.Areas.Catalogos.Controllers
 {
@@ -27,7 +27,7 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
         [SessionValidate]
         public async Task<IActionResult> GetListaUsuarios() {
             RequestSender oRs = new RequestSender(Global.UrlAPI);
-            dtoResult<Usuario> usuarios = await oRs.GetList<Usuario>("Usuario/GetListaUsuarios");
+            dtoResult<ListaUsuariosDTO> usuarios = await oRs.GetList<ListaUsuariosDTO>("Usuario/GetListaUsuarios");
 
             if (usuarios.Estatus) {
                 return new JsonResult(usuarios.result);

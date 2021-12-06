@@ -86,6 +86,8 @@ namespace LabCaribeWeb
                 options.Cookie.IsEssential = true;
             });
 
+            //Cadena de conexion Dapper
+            Global.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<LabDBContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));

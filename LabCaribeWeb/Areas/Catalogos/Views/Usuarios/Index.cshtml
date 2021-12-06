@@ -18,6 +18,7 @@
                                             <th>NOMBRE</th>
                                             <th>APELLIDOS</th>
                                             <th>CORREO</th>
+                                            <th>PERFIL</th>
                                             <th>ACTIVO</th>
                                             <th>ACCIONES</th>
                                         </tr>
@@ -27,6 +28,7 @@
                                             <td>{{item.nombre}}</td>
                                             <td>{{item.apellidos}}</td>
                                             <td>{{item.correo}}</td>
+                                            <td>{{item.perfil}}</td>
                                             <td>{{item.activo | activo}}</td>
                                             <td nowrap>
                                                 <button type="button" class="btn waves-effect waves-light btn-outline-info btn-sm">Editar</button>
@@ -49,8 +51,7 @@
         var app = new Vue({
             el: '#Usuarios',
             data: {
-                listaUsuarios: [],
-                mensaje: 'Hola View'
+                listaUsuarios: []
             },
             methods: {
                 obtenerListaUsuarios: function () {

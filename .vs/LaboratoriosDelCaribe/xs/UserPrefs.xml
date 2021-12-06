@@ -1,47 +1,42 @@
 ﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
   <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/Services/UsuarioService.cs">
     <Files>
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="25" Column="1" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml" Line="33" Column="125" />
-      <File FileName="Models/Models/Usuario.cs" Line="1" Column="1" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="30" Column="86" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml" Line="47" Column="18" />
+      <File FileName="DataBaseContext/LabDBContext.cs" Line="19" Column="58" />
+      <File FileName="Services/Interfaces/IUsuarioService.cs" Line="1" Column="1" />
+      <File FileName="Services/Services/UsuarioService.cs" Line="67" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="LaboratoriosDelCaribe" expanded="True">
-            <Node name="LabCaribeWeb" expanded="True">
+            <Node name="DataBaseContext" expanded="True">
               <Node name="Dependencies" expanded="True" />
+            </Node>
+            <Node name="LabCaribeWeb" expanded="True">
               <Node name="Areas" expanded="True">
                 <Node name="Catalogos" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
-                    <Node name="Usuarios" expanded="True">
-                      <Node name="Index.cshtml" selected="True" />
-                    </Node>
+                    <Node name="Usuarios" expanded="True" />
                   </Node>
                 </Node>
-              </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="API" expanded="True" />
-              </Node>
-              <Node name="Filters" expanded="True" />
-              <Node name="Utility" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Shared" expanded="True" />
               </Node>
             </Node>
             <Node name="Models" expanded="True">
               <Node name="DTOs" expanded="True">
-                <Node name="Menu" expanded="True" />
+                <Node name="Usuario" expanded="True" />
               </Node>
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="Services" expanded="True">
               <Node name="Interfaces" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="UsuarioService.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Tools" expanded="True" />
           </Node>
         </State>
       </Pad>

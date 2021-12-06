@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -12,6 +13,8 @@ using Microsoft.IdentityModel.Tokens;
 using Models.DTOs.Usuario;
 using Services.Interfaces;
 using Tools;
+using Dapper;
+using MySqlConnector;
 
 namespace Services.Services
 {
@@ -19,11 +22,13 @@ namespace Services.Services
     {
         private readonly LabDBContext _labDBContext;
         private readonly AppSettings _appSettings;
+        private readonly IDbConnection _db;
 
         public UsuarioService(LabDBContext labDBContext, IOptions<AppSettings> appSettings)
         {
             _labDBContext = labDBContext;
             _appSettings = appSettings.Value;
+            _db = new MySqlConnection(Global.ConnectionString);
         }
 
         public bool Add(Usuario usuario) {
@@ -45,8 +50,24 @@ namespace Services.Services
             return resultado;
         }
 
-        public List<Usuario> GetListaUsuarios() {
-            return _labDBContext.Usuario.ToList();
+        public List<ListaUsuariosDTO> GetListaUsuarios() {
+            List<ListaUsuariosDTO> listaUsuarios = null;
+            try
+            {
+                using (var conn = _db)
+                {
+                    listaUsuarios = conn.Query<ListaUsuariosDTO>("select U.id, U.correo, U.nombre, U.apellidos, U.activo, P.nombre as perfil " +
+                                                                 "from LabDelCaribe.Usuario as U " +
+                                                                 "left join LabDelCaribe.Perfil as P on U.idPerfil = P.id " +
+                                                                 "order by U.nombre, U.apellidos").ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                listaUsuarios = null;
+            }
+
+            return listaUsuarios;
         }
 
         public UsuarioLogueadoDTO Autenticacion(AccesoDTO login) {

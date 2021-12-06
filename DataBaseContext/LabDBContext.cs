@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Extensions;
 
 namespace DataBaseContext
 {
-    public partial class LabDBContext: DbContext
+    public partial class LabDBContext: DbContext, ITransactionDapperEntity
     {
 
         public LabDBContext(DbContextOptions<LabDBContext> options) : base(options)
@@ -18,6 +18,9 @@ namespace DataBaseContext
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<PerfilMenu> PerfilMenu { get; set; }
+
+        public IDbConnection Connection => Database.GetDbConnection();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 

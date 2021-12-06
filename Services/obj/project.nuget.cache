@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "CRzFb0XsmKreEfG8E9/NtXrudXZjYDfCzdAc1KnRlwNaJ3HtWiNAty7UyXTXfn5KTcRAiJG62UVPB4LlpS95ww==",
+  "dgSpecHash": "2a2kbfOgEgkAmM0KZtPrkn42YNAIK4SRTPm+lVs+UwgV7L9unxpzV2aHklJJliDvRWfqrNQ6KskWp1p6YH5lqQ==",
   "success": true,
   "projectFilePath": "/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services.csproj",
   "expectedPackageFiles": [
     "/Users/neftalirodriguez/.nuget/packages/bouncycastle.netcore/1.8.5/bouncycastle.netcore.1.8.5.nupkg.sha512",
+    "/Users/neftalirodriguez/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
+    "/Users/neftalirodriguez/.nuget/packages/dapper.contrib/2.0.78/dapper.contrib.2.0.78.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/google.protobuf/3.11.4/google.protobuf.3.11.4.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/k4os.compression.lz4/1.1.11/k4os.compression.lz4.1.1.11.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/k4os.compression.lz4.streams/1.1.11/k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
@@ -89,7 +91,7 @@
     "/Users/neftalirodriguez/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/mysql.data/8.0.23/mysql.data.8.0.23.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/mysql.entityframeworkcore/5.0.0/mysql.entityframeworkcore.5.0.0.nupkg.sha512",
-    "/Users/neftalirodriguez/.nuget/packages/mysqlconnector/1.1.0/mysqlconnector.1.1.0.nupkg.sha512",
+    "/Users/neftalirodriguez/.nuget/packages/mysqlconnector/2.1.0/mysqlconnector.2.1.0.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/Users/neftalirodriguez/.nuget/packages/newtonsoft.json.bson/1.0.1/newtonsoft.json.bson.1.0.1.nupkg.sha512",
