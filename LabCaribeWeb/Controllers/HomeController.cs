@@ -29,6 +29,7 @@ namespace LabCaribeWeb.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.NombreUsuario = _sessionManeger.Nombre + " " + _sessionManeger.Apellidos;
             return View();
         }
 

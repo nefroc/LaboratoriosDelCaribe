@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
-  <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Controllers/HomeController.cs">
+  <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml">
     <Files>
-      <File FileName="LabCaribeWeb/Controllers/API/UsuarioController.cs" Line="32" Column="46" />
-      <File FileName="Services/Services/UsuarioService.cs" Line="48" Column="1" />
-      <File FileName="Services/Interfaces/IUsuarioService.cs" Line="11" Column="39" />
-      <File FileName="LabCaribeWeb/Controllers/LoginController.cs" Line="1" Column="1" />
-      <File FileName="LabCaribeWeb/Controllers/API/MenuController.cs" Line="1" Column="1" />
-      <File FileName="LabCaribeWeb/Controllers/HomeController.cs" Line="20" Column="58" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="25" Column="1" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml" Line="33" Column="125" />
+      <File FileName="Models/Models/Usuario.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,18 +12,36 @@
           <Node name="LaboratoriosDelCaribe" expanded="True">
             <Node name="LabCaribeWeb" expanded="True">
               <Node name="Dependencies" expanded="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Catalogos" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                  <Node name="Views" expanded="True">
+                    <Node name="Usuarios" expanded="True">
+                      <Node name="Index.cshtml" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
               <Node name="Controllers" expanded="True">
                 <Node name="API" expanded="True" />
-                <Node name="HomeController.cs" selected="True" />
               </Node>
               <Node name="Filters" expanded="True" />
               <Node name="Utility" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
+              </Node>
             </Node>
-            <Node name="Models" expanded="True" />
+            <Node name="Models" expanded="True">
+              <Node name="DTOs" expanded="True">
+                <Node name="Menu" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+            </Node>
             <Node name="Services" expanded="True">
               <Node name="Interfaces" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
+            <Node name="Tools" expanded="True" />
           </Node>
         </State>
       </Pad>

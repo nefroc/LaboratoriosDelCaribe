@@ -438,3 +438,4 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/bin/Debug/net5.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/Razor/Areas/Catalogos/Views/Usuarios/Index.cshtml.g.cs

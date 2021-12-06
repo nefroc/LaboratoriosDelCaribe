@@ -8,6 +8,8 @@ using LabCaribeWeb.Utility;
 using Models.DTOs.Usuario;
 using Models.DTOs.Menu;
 using Tools;
+using DataBaseContext.Models;
+using System.Linq;
 
 namespace LabCaribeWeb.Controllers
 {
@@ -70,12 +72,58 @@ namespace LabCaribeWeb.Controllers
         {
             RequestSender oRS = new RequestSender(Global.UrlAPI);
 
-            dtoResult<PerfilMenuDTO> listMenu = await oRS.GetList<PerfilMenuDTO>("menu/GetPerfilMenu?idPerfil=" + idPerfil);
+            dtoResult<Menu> listMenu = await oRS.GetList<Menu>("menu/GetPerfilMenu?idPerfil=" + idPerfil);
 
             if (listMenu.Estatus)
-                return listMenu.result;
+            {
+                return GetMenu(listMenu.result, 0);
+            }
             else
                 throw new Exception(listMenu.message);
+        }
+
+        private List<PerfilMenuDTO> GetMenu(List<Menu> menuList, int parentId)
+        {
+            var children = GetChildrenMenu(menuList, parentId);
+
+            if (!children.Any())
+            {
+                return new List<PerfilMenuDTO>();
+            }
+
+            var vmList = new List<PerfilMenuDTO>();
+            foreach (var item in children)
+            {
+                var menu = GetMenuItem(menuList, item.Id);
+
+                var vm = new PerfilMenuDTO();
+
+                vm.idMenu = menu.Id;
+                vm.nombre = menu.Nombre;
+                vm.iconClass = menu.IconClass;
+                vm.url = menu.Url;
+                vm.children = GetMenu(menuList, menu.Id);
+
+                vmList.Add(vm);
+            }
+
+            return vmList;
+        }
+
+        private IList<Menu> GetChildrenMenu(List<Menu> menuList, int parentId)
+        {
+            return menuList.Where(x => x.PadreId == parentId).OrderBy(x => x.Nombre).ToList();
+        }
+
+        private Menu GetMenuItem(IList<Menu> menuList, int id)
+        {
+            return menuList.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using Models.DTOs.Menu;
+@{
+    string menuString = Context.Session.GetString("Menu");
+    List<PerfilMenuDTO> menuPerfil = System.Text.Json.JsonSerializer.Deserialize<List<PerfilMenuDTO>>(menuString);
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,7 +22,7 @@
     <link href="/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    @*<link href="/assets/node_modules/morrisjs/morris.css" rel="stylesheet">*@
 
     <!--c3 CSS -->
     <link href="/assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
@@ -34,18 +40,20 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css" rel="stylesheet">
+    @RenderSection("Styles", required: false)
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">Admin Wrap</p>
-        </div>
-    </div>
+    @*<div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">Admin Wrap</p>
+            </div>
+        </div>*@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -58,8 +66,8 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                <div class="navbar-header" id="vheader">
+                    <a class="navbar-brand" href="#">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
@@ -88,7 +96,7 @@
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
                         <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
                         <!-- ============================================================== -->
-                        
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -97,26 +105,10 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">Mark Sanders &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">@ViewBag.NombreUsuario &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="~/Login/Logout"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -135,40 +127,25 @@
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-
-                        <li class="nav-small-cap">--- PERSONAL</li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Dashboard <span class="label label-rounded label-danger">4</span></span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Minimal </a></li>
-                                <li><a href="index2.html">Analytical</a></li>
-                                <li><a href="index3.html">Demographical</a></li>
-                                <li><a href="index4.html">Modern</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Apps</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li><a href="app-chat.html">Chat app</a></li>
-                                <li><a href="app-ticket.html">Support Ticket</a></li>
-                                <li><a href="app-contact.html">Contact / Employee</a></li>
-                                <li><a href="app-contact2.html">Contact Grid</a></li>
-                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Inbox</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-email.html">Mailbox</a></li>
-                                <li><a href="app-email-detail.html">Mailbox Detail</a></li>
-                                <li><a href="app-compose.html">Compose Mail</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div id="menu">
+                        <item :model="treeData"></item>
+                    </div>
+                    <script type="text/x-template" id="item-template">
+                        <ul id="sidebarnav">
+                            <li v-for="item in model">
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false" v-if="item.children.length>0">
+                                    <i :class="item.iconClass"></i>
+                                    <span class="hide-menu">{{item.nombre}}</span>
+                                </a>
+                                <item :model="item.children" v-if="item.children.length>0">
+                                </item>
+                                <a :href="item.url" v-if="item.children.length<=0">
+                                    {{item.nombre }}
+                                </a>
+                            </li>
+                        </ul>
+                    </script>
                 </nav>
-                <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
         </aside>
@@ -245,19 +222,57 @@
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="/assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="/assets/node_modules/morrisjs/morris.min.js"></script>
+    @*<script src="/assets/node_modules/raphael/raphael-min.js"></script>
+        <script src="/assets/node_modules/morrisjs/morris.min.js"></script>*@
     <!--c3 JavaScript -->
     <script src="/assets/node_modules/d3/d3.min.js"></script>
     <script src="/assets/node_modules/c3-master/c3.min.js"></script>
     <!-- Popup message jquery -->
     <script src="/assets/node_modules/toast-master/js/jquery.toast.js"></script>
     <!-- Chart JS -->
-    <script src="/js/dashboard1.js"></script>
+    @*<script src="/js/dashboard1.js"></script>*@
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="/assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.21.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/umd/locale/es.js"></script>
+    <script>
+        ELEMENT.locale(ELEMENT.lang.es);
+        Vue.prototype.$ELEMENT.zIndex = 3000</script>
+    <script>
+        Vue.component('item', {
+            template: '#item-template',
+            props: {
+                model: Object
+            }
+        })
+
+        var appMenu = new Vue({
+            el: '#menu',
+            data: {
+                treeData: null
+            },
+            methods: {
+                obtenerMenu: function () {
+                    let mnu = '@Html.Raw(Json.Serialize(menuPerfil))';
+                    this.treeData = JSON.parse(mnu);
+                }
+            },
+            mounted: function () {
+		        this.obtenerMenu()
+	        }
+        });
+
+        Vue.filter('activo', function (value) {
+            if (value) {
+                return value === true ? 'SI' : 'NO'
+            }
+        })
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

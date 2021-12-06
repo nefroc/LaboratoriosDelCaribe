@@ -28,7 +28,7 @@ namespace LabCaribeWeb.Controllers.API
         }
 
         [HttpGet("GetListaUsuarios")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetListaUsuarios() {
             return Ok(_usuarioService.GetListaUsuarios());
         }

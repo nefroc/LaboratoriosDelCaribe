@@ -4,6 +4,7 @@ using Models.DTOs.Menu;
 using DataBaseContext;
 using System.Collections.Generic;
 using System.Linq;
+using DataBaseContext.Models;
 
 namespace Services.Services
 {
@@ -17,8 +18,8 @@ namespace Services.Services
             _labDBContext = labDBContext;
         }
 
-        public List<PerfilMenuDTO> GetPerfilMenu(int idPerfil) {
-            List<PerfilMenuDTO> menu = new List<PerfilMenuDTO>();
+        public List<Menu> GetPerfilMenu(int idPerfil) {
+            List<Menu> menu = new List<Menu>();
 
             try
             {
@@ -27,22 +28,26 @@ namespace Services.Services
                         perfilMenu => perfilMenu.IdMenu,
                         menu => menu.Id,
                         (perfilMenu, menu) => new {
-                            idMenu = menu.Id,
-                            padreId = menu.PadreId,
-                            nombre = menu.Nombre,
-                            url = menu.Url,
-                            iconClass = menu.IconClass
+                            Id = menu.Id,
+                            PadreId = menu.PadreId == null ? 0 : menu.PadreId,
+                            Nombre = menu.Nombre,
+                            Url = menu.Url,
+                            IconClass = menu.IconClass,
+                            CreadoPor = menu.CreadoPor,
+                            Creado = menu.Creado
                         }
                     ).ToList();
 
                 foreach (var item in query)
                 {
-                    menu.Add(new PerfilMenuDTO {
-                        idMenu = item.idMenu,
-                        padreId = item.padreId,
-                        nombre = item.nombre,
-                        url = item.url,
-                        iconClass = item.iconClass
+                    menu.Add(new Menu {
+                        Id = item.Id,
+                        PadreId = item.PadreId,
+                        Nombre = item.Nombre,
+                        Url = item.Url,
+                        IconClass = item.IconClass,
+                        CreadoPor = item.CreadoPor,
+                        Creado = item.Creado
                     });
                 }
             }

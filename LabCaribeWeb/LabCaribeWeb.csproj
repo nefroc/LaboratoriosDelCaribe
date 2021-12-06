@@ -51,6 +51,10 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="Areas\Usuario\" />
+    <None Remove="Areas\Catalogos\Controllers\" />
+    <None Remove="Areas\Catalogos\Views\" />
+    <None Remove="Areas\Catalogos\Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />
@@ -58,5 +62,9 @@
     <Folder Include="Filters\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Controllers\API\" />
+    <Folder Include="Areas\Catalogos\" />
+    <Folder Include="Areas\Catalogos\Controllers\" />
+    <Folder Include="Areas\Catalogos\Views\" />
+    <Folder Include="Areas\Catalogos\Views\Usuarios\" />
   </ItemGroup>
 </Project>

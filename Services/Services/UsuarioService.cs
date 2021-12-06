@@ -26,7 +26,6 @@ namespace Services.Services
             _appSettings = appSettings.Value;
         }
 
-        [Authorize]
         public bool Add(Usuario usuario) {
             bool resultado = false;
             try
