@@ -3,14 +3,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<!-- Encabezado -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">@ViewData["Title"]</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item">Catálogos</li>
+            <li class="breadcrumb-item active">Usuarios</li>
+        </ol>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
 <div id="Usuarios">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-center">@ViewData["Title"]</h4>
                     <div class="row">
                         <div class="col-lg-12">
+                            <button type="button" class="btn btn-info btn-sm" @@click="dialogNuevoUsuario = true"><i class="fa fa-plus-circle"></i>Nuevo Usuario</button>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
@@ -32,7 +49,7 @@
                                             <td>{{item.activo | activo}}</td>
                                             <td nowrap>
                                                 <button type="button" class="btn waves-effect waves-light btn-outline-info btn-sm">Editar</button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-danger btn-sm" @@click="btnEliminar_click(item)">Eliminar</button>
+                                                <button type="button" class="btn waves-effect waves-light btn-outline-danger btn-sm" @@click="btnEliminarUsuario_click(item)">Eliminar</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -44,6 +61,59 @@
             </div>
         </div>
     </div>
+
+    @*Dialog Nuevo Usuario*@
+    <el-dialog title="Nuevo Usuario" :visible.sync="dialogNuevoUsuario">
+        <el-form :model="nuevoUsuario" ref="nuevoUsuario" :rules="rulesUsuario">
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <label>Correo</label>
+                    <el-form-item prop="correo">
+                        <el-input v-model="nuevoUsuario.correo"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Contraseña</label>
+                    <el-form-item prop="contrasena">
+                        <el-input v-model="nuevoUsuario.contrasena"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <label>Nombre</label>
+                    <el-form-item prop="nombre">
+                        <el-input v-model="nuevoUsuario.nombre"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Apellidos</label>
+                    <el-form-item prop="apellidos">
+                        <el-input v-model="nuevoUsuario.apellidos"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <el-form-item label="Activo" prop="activo">
+                        <el-switch v-model="nuevoUsuario.activo"></el-switch>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Apellidos</label>
+                    <el-form-item prop="idPerfil">
+                        <el-select v-model="nuevoUsuario.idPerfil" placeholder="please select your zone">
+                            <el-option label="Administrador" value="1"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>
+            </div>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @@click="dialogNuevoUsuario = false">Cancelar</el-button>
+            <el-button type="primary" @@click="btnNuevoUsuario_click">Guardar</el-button>
+        </span>
+    </el-dialog>
 </div>
 
 @section Scripts{
@@ -51,7 +121,24 @@
         var app = new Vue({
             el: '#Usuarios',
             data: {
-                listaUsuarios: []
+                listaUsuarios: [],
+                dialogNuevoUsuario: false,
+                nuevoUsuario: {
+                    id: null,
+                    correo: null,
+                    contrasena: null,
+                    nombre: null,
+                    apellidos: null,
+                    activo: true,
+                    creadoPor: 0,
+                    idPerfil: 1
+                },
+                rulesUsuario: {
+                    correo: { required: true, message: 'El correo es requerido.', trigger: 'blur' },
+                    contrasena: { required: true, message: 'La contraseña es requerida', trigger: 'blur' },
+                    nombre: { required: true, message: 'El nombre es requerido.', trigger: 'blur' },
+                    apellidos: { required: true, message: 'Los apellidos son requeridos', trigger: 'blur' }
+                }
             },
             methods: {
                 obtenerListaUsuarios: function () {
@@ -62,21 +149,62 @@
                         this.$message.error('No se han podido cargar los Usuarios.');
                     });
                 },
-                btnEliminar_click: function (item) {
+                btnEliminarUsuario_click: function (item) {
                     this.$confirm('El usuario ' + item.nombre + ' ' + item.apellidos + ' se eliminará permanentemente. ¿Desea continuar?', 'Confirmar', {
                         confirmButtonText: 'Si',
                         cancelButtonText: 'No',
                         type: 'warning'
                     }).then(() => {
-                        this.$message({
-                            type: 'success',
-                            message: 'El usuario ' + item.nombre + ' ' + item.apellidos + ' se ha eliminado'
-                        });
+                        try {
+                            axios.delete('@Url.Action("SetEliminarUsuario", "Usuarios")?idUsuario=' + item.id).then(response => {
+                                console.log(response.data)
+                                if (response.data === true) {
+                                    this.obtenerListaUsuarios()
+
+                                    this.$message({
+                                        type: 'success',
+                                        message: 'El usuario ' + item.nombre + ' ' + item.apellidos + ' se ha eliminado'
+                                    });
+                                } else {
+                                    this.$message.error(response.data);
+                                }
+                            }).catch(e => {
+                                this.$message.error('Error al eliminar el usuario.');
+                            });
+                        } catch (error) {
+                            this.$message.error(error);
+                        }
                     }).catch(() => {
                         this.$message({
                             type: 'info',
                             message: 'Proceso cancelado.'
                         });
+                    });
+                },
+                btnNuevoUsuario_click: function () {
+                    this.$refs['nuevoUsuario'].validate((valid) => {
+                        if (valid) {
+                            try {
+                                axios.post('@Url.Action("SetNuevoUsuario", "Usuarios")', this.nuevoUsuario).then(response => {
+                                    console.log(response.data)
+                                    if (response.data === 'ok') {
+                                        this.dialogNuevoUsuario = false
+                                        this.obtenerListaUsuarios()
+
+                                        this.$message.success('El usuario se ha creado.');
+                                    } else {
+                                        this.$message.error(response.data);
+                                    }
+                                }).catch(e => {
+                                    this.$message.error('Error al crear el usuario.');
+                                });
+                            } catch (error) {
+                                this.$message.error(error);
+                            }
+                        } else {
+                            console.log('Error de validacion')
+                            return false;
+                        }
                     });
                 }
             },

@@ -36,5 +36,39 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
                 throw new Exception(usuarios.message);
             }
         }
+
+        [HttpPost]
+        [SessionValidate]
+        public async Task<IActionResult> SetNuevoUsuario([FromBody] UsuarioDTO usuario) {
+
+            usuario.creadoPor = _sessionManager.IdUsuario;
+
+            RequestSender requestSender = new RequestSender(Global.UrlAPI);
+            dtoResult<string> result = await requestSender.Post<string>("Usuario/SetNuevoUsuario", usuario);
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.valor);
+            }
+            else {
+                throw new Exception(result.message);
+            }
+        }
+
+        [HttpDelete]
+        [SessionValidate]
+        public async Task<IActionResult> SetEliminarUsuario(int idUsuario) {
+            RequestSender requestSender = new RequestSender(Global.UrlAPI);
+            dtoResult<bool> result = await requestSender.Delet<bool>("Usuario/SetEliminarUsuario?id=" + idUsuario);
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.valor);
+            }
+            else
+            {
+                throw new Exception(result.message);
+            }
+        }
     }
 }

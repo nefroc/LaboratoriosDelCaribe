@@ -27,10 +27,20 @@ namespace LabCaribeWeb.Controllers.API
             }
         }
 
+        [HttpPost("SetNuevoUsuario")]
+        public IActionResult SetNuevoUsuario([FromBody] UsuarioDTO usuario) {
+            return Ok(_usuarioService.SetNuevoUsuario(usuario));
+        }
+
         [HttpGet("GetListaUsuarios")]
         //[Authorize]
         public IActionResult GetListaUsuarios() {
             return Ok(_usuarioService.GetListaUsuarios());
+        }
+
+        [HttpDelete("SetEliminarUsuario")]
+        public IActionResult SetEliminarUsuario(int id) {
+            return Ok(_usuarioService.SetEliminarUsuario(id));
         }
     }
 }

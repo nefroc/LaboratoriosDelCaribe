@@ -6,7 +6,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using DataBaseContext;
-using DataBaseContext.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -31,23 +30,42 @@ namespace Services.Services
             _db = new MySqlConnection(Global.ConnectionString);
         }
 
-        public bool Add(Usuario usuario) {
-            bool resultado = false;
-            try
-            {
-                var usuarioExiste = _labDBContext.Usuario.Where(user => user.Correo == usuario.Correo).FirstOrDefault();
-                if (usuarioExiste == null) {
-                    _labDBContext.Usuario.Add(usuario);
-                    _labDBContext.SaveChanges();
+        public string SetNuevoUsuario(UsuarioDTO usuario) {
+            string mensaje = null;
 
-                    resultado = true;
+            using (var con = _db) {
+                con.Open();
+                using (var tran = con.BeginTransaction())
+                {
+                    try
+                    {
+                        var p = new DynamicParameters();
+                        p.Add("_correo", usuario.correo);
+                        p.Add("_contrasena", Encrypt.EncryptString(usuario.contrasena));
+                        p.Add("_nombre", usuario.nombre);
+                        p.Add("_apellidos", usuario.apellidos);
+                        p.Add("_activo", usuario.activo);
+                        p.Add("_creadoPor", usuario.creadoPor);
+                        p.Add("_idPerfil", usuario.idPerfil);
+
+                        mensaje = con.ExecuteScalar<string>("spSetNuevoUsuario", p, tran, commandType: CommandType.StoredProcedure);
+                        if (mensaje == "ok")
+                        {
+                            tran.Commit();
+                        }
+                        else {
+                            tran.Rollback();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        mensaje = ex.Message;
+                    }
                 }
             }
-            catch (Exception ex) {
-                throw new Exception(ex.Message);
-            }
 
-            return resultado;
+            return mensaje;
         }
 
         public List<ListaUsuariosDTO> GetListaUsuarios() {
@@ -78,7 +96,7 @@ namespace Services.Services
                 var usuarioExiste = _labDBContext.Usuario.Where(user => user.Correo == login.Username).FirstOrDefault();
                 if (usuarioExiste != null)
                 {
-                    if (usuarioExiste.Contrasena == login.Password)
+                    if (Encrypt.DecryptString(usuarioExiste.Contrasena) == login.Password)
                     {
                         usuarioLogueado.IdUsuario = usuarioExiste.Id;
                         usuarioLogueado.Nombre = usuarioExiste.Nombre;
@@ -126,6 +144,27 @@ namespace Services.Services
             var token = tokenHandler.CreateToken(tokenDesriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public bool SetEliminarUsuario(int id) {
+            bool result = false;
+
+            using (var con = _db)
+            {
+                var sql = "delete from LabDelCaribe.Usuario where id = @id";
+
+                try
+                {
+                    con.Open();
+                    con.Execute(sql, new { id });
+
+                    result = true;
+                }
+                catch { }
+                
+            }
+
+            return result;
         }
     }
 }
