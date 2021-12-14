@@ -70,5 +70,35 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
                 throw new Exception(result.message);
             }
         }
+
+        [HttpPut]
+        [SessionValidate]
+        public async Task<IActionResult> SetActualizarUsuario([FromBody] UsuarioDTO usuario) {
+            RequestSender requestSender = new RequestSender(Global.UrlAPI);
+            dtoResult<string> result = await requestSender.Put<string>("Usuario/SetActualizarUsuario", usuario);
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.valor);
+            }
+            else {
+                throw new Exception(result.message);
+            }
+        }
+
+        [HttpGet]
+        [SessionValidate]
+        public async Task<IActionResult> GetUsuario(int idUsuario) {
+            RequestSender request = new RequestSender(Global.UrlAPI);
+            dtoResult<UsuarioDTO> result = await request.Get<UsuarioDTO>("Usuario/GetUsuario?id=" + idUsuario);
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.valor);
+            }
+            else {
+                throw new Exception(result.message);
+            }
+        }
     }
 }

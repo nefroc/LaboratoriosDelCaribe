@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
   <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/Services/UsuarioService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/DTOs/ListaDTO.cs">
     <Files>
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="60" Column="60" />
-      <File FileName="LabCaribeWeb/Controllers/API/UsuarioController.cs" Line="43" Column="60" />
-      <File FileName="Services/Services/UsuarioService.cs" Line="162" Column="1" />
-      <File FileName="Services/Interfaces/IUsuarioService.cs" Line="12" Column="47" />
-      <File FileName="Models/DTOs/Usuario/ListaUsuariosDTO.cs" Line="1" Column="1" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml" Line="159" Column="41" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Usuarios/Index.cshtml" Line="291" Column="69" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="77" Column="1" />
+      <File FileName="LabCaribeWeb/Controllers/API/UsuarioController.cs" />
+      <File FileName="Services/Services/UsuarioService.cs" Line="99" Column="21" />
+      <File FileName="Services/Interfaces/IUsuarioService.cs" Line="14" Column="39" />
+      <File FileName="Models/DTOs/ListaDTO.cs" Line="6" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -35,15 +35,13 @@
             </Node>
             <Node name="Models" expanded="True">
               <Node name="DTOs" expanded="True">
-                <Node name="Usuario" expanded="True" />
+                <Node name="ListaDTO.cs" selected="True" />
               </Node>
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="Services" expanded="True">
               <Node name="Interfaces" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="UsuarioService.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
             </Node>
             <Node name="Tools" expanded="True" />
           </Node>
@@ -54,9 +52,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services/UsuarioService.cs" relfile="Services/Services/UsuarioService.cs" line="150" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

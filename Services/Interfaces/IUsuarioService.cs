@@ -10,5 +10,7 @@ namespace Services.Interfaces
         List<ListaUsuariosDTO> GetListaUsuarios();
         UsuarioLogueadoDTO Autenticacion(AccesoDTO login);
         bool SetEliminarUsuario(int idUsuario);
+        string SetActualizarUsuario(UsuarioDTO usuario);
+        UsuarioDTO GetUsuario(int id);
     }
 }

@@ -166,5 +166,80 @@ namespace Services.Services
 
             return result;
         }
+
+        public string SetActualizarUsuario(UsuarioDTO usuario) {
+            string mensaje = null;
+
+            using (var con = _db)
+            {
+                con.Open();
+                using (var tran = con.BeginTransaction())
+                {
+                    try
+                    {
+                        var p = new DynamicParameters();
+                        p.Add("_id", usuario.id);
+                        p.Add("_correo", usuario.correo);
+                        p.Add("_contrasena", Encrypt.EncryptString(usuario.contrasena));
+                        p.Add("_nombre", usuario.nombre);
+                        p.Add("_apellidos", usuario.apellidos);
+                        p.Add("_activo", usuario.activo);
+                        p.Add("_modificadoPor", usuario.creadoPor);
+                        p.Add("_idPerfil", usuario.idPerfil);
+
+                        mensaje = con.ExecuteScalar<string>("spSetActualizarUsuario", p, tran, commandType: CommandType.StoredProcedure);
+                        if (mensaje == "ok")
+                        {
+                            tran.Commit();
+                        }
+                        else
+                        {
+                            tran.Rollback();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        mensaje = ex.Message;
+                    }
+                }
+            }
+
+            return mensaje;
+        }
+
+        public UsuarioDTO GetUsuario(int id) {
+            UsuarioDTO usuario = null;
+            try
+            {
+                using (var conn = _db)
+                {
+                    var user = conn.QueryFirstOrDefault("select id, correo, contrasena, nombre, apellidos, activo, creadoPor, idPerfil " +
+                                                       "from LabDelCaribe.Usuario " +
+                                                       "where id = @id;", new { id });
+                    var data = (IDictionary<string, object>)user;
+
+                    usuario = new UsuarioDTO() {
+                        id = (int)data["id"],
+                        correo = data["correo"].ToString(),
+                        contrasena = data["contrasena"].ToString(),
+                        nombre = data["nombre"].ToString(),
+                        apellidos = data["apellidos"].ToString(),
+                        activo = (bool)data["activo"],
+                        creadoPor = (int)data["creadoPor"],
+                        idPerfil = (int?)data["idPerfil"]
+                    };
+
+                    try { usuario.contrasena = Encrypt.DecryptString(usuario.contrasena); }
+                    catch { usuario.contrasena = ""; }
+                }
+            }
+            catch (Exception ex)
+            {
+                usuario = null;
+            }
+
+            return usuario;
+        }
     }
 }

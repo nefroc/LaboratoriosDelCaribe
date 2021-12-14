@@ -48,7 +48,7 @@
                                             <td>{{item.perfil}}</td>
                                             <td>{{item.activo | activo}}</td>
                                             <td nowrap>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info btn-sm">Editar</button>
+                                                <button type="button" class="btn waves-effect waves-light btn-outline-info btn-sm" @@click="btnBuscarUsuario_click(item.id)">Editar</button>
                                                 <button type="button" class="btn waves-effect waves-light btn-outline-danger btn-sm" @@click="btnEliminarUsuario_click(item)">Eliminar</button>
                                             </td>
                                         </tr>
@@ -114,6 +114,58 @@
             <el-button type="primary" @@click="btnNuevoUsuario_click">Guardar</el-button>
         </span>
     </el-dialog>
+    @*Dialog Actualizar Usuario*@
+    <el-dialog title="Actualizar Usuario" :visible.sync="dialogActualizarUsuario">
+        <el-form :model="actualizarUsuario" ref="actualizarUsuario" :rules="rulesUsuario">
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <label>Correo</label>
+                    <el-form-item prop="correo">
+                        <el-input v-model="actualizarUsuario.correo"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Contraseña</label>
+                    <el-form-item prop="contrasena">
+                        <el-input v-model="actualizarUsuario.contrasena"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <label>Nombre</label>
+                    <el-form-item prop="nombre">
+                        <el-input v-model="actualizarUsuario.nombre"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Apellidos</label>
+                    <el-form-item prop="apellidos">
+                        <el-input v-model="actualizarUsuario.apellidos"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-6">
+                    <el-form-item label="Activo" prop="activo">
+                        <el-switch v-model="actualizarUsuario.activo"></el-switch>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <label>Apellidos</label>
+                    <el-form-item prop="idPerfil">
+                        <el-select v-model="actualizarUsuario.idPerfil" placeholder="please select your zone">
+                            <el-option label="Administrador" value="1"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>
+            </div>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @@click="dialogActualizarUsuario = false">Cancelar</el-button>
+            <el-button type="primary" @@click="btnActualizarUsuario_click">Guardar</el-button>
+        </span>
+    </el-dialog>
 </div>
 
 @section Scripts{
@@ -138,7 +190,18 @@
                     contrasena: { required: true, message: 'La contraseña es requerida', trigger: 'blur' },
                     nombre: { required: true, message: 'El nombre es requerido.', trigger: 'blur' },
                     apellidos: { required: true, message: 'Los apellidos son requeridos', trigger: 'blur' }
-                }
+                },
+                actualizarUsuario: {
+                    id: null,
+                    correo: null,
+                    contrasena: null,
+                    nombre: null,
+                    apellidos: null,
+                    activo: true,
+                    creadoPor: 0,
+                    idPerfil: 1
+                },
+                dialogActualizarUsuario: false
             },
             methods: {
                 obtenerListaUsuarios: function () {
@@ -203,6 +266,42 @@
                             }
                         } else {
                             console.log('Error de validacion')
+                            return false;
+                        }
+                    });
+                },
+                btnBuscarUsuario_click: function (id) {
+                    axios.get('@Url.Action("GetUsuario", "Usuarios")?idUsuario=' + id, this.nuevoUsuario).then(response => {
+                            console.log(response.data)
+                        this.actualizarUsuario = response.data
+                        this.dialogActualizarUsuario = true;
+
+                        }).catch(e => {
+                            this.$message.error('Error al obtener el usuario.');
+                        });
+                },
+                btnActualizarUsuario_click: function () {
+                    this.$refs['actualizarUsuario'].validate((valid) => {
+                        if (valid) {
+                            try {
+                                this.actualizarUsuario.idPerfil = parseInt(this.nuevoUsuario.idPerfil)
+                                axios.put('@Url.Action("SetActualizarUsuario", "Usuarios")', this.actualizarUsuario).then(response => {
+                                    console.log('Data', response.data)
+                                    if (response.data === 'ok') {
+                                        this.dialogActualizarUsuario = false
+                                        this.obtenerListaUsuarios()
+
+                                        this.$message.success('El usuario se ha actualizado.');
+                                    } else {
+                                        this.$message.error(response.data);
+                                    }
+                                }).catch(e => {
+                                    this.$message.error('Error al actualizar el usuario.');
+                                });
+                            } catch (error) {
+                                this.$message.error(error);
+                            }
+                        } else {
                             return false;
                         }
                     });

@@ -21,7 +21,6 @@ namespace Tools
 
         public static string DecryptString(string cipherText)
         {
-
             //se encripta le texto  crm_santi_20191010_10:24 a base 64
             string keyString = "Y3JtX3NhbnRpXzIwMTkxMDEwXzEwOjI0";
             cipherText = cipherText.Replace(" ", "+");

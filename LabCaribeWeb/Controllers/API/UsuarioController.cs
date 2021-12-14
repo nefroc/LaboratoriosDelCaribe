@@ -42,5 +42,15 @@ namespace LabCaribeWeb.Controllers.API
         public IActionResult SetEliminarUsuario(int id) {
             return Ok(_usuarioService.SetEliminarUsuario(id));
         }
+
+        [HttpPut("SetActualizarUsuario")]
+        public IActionResult SetActualizarUsuario([FromBody] UsuarioDTO usuario) {
+            return Ok(_usuarioService.SetActualizarUsuario(usuario));
+        }
+
+        [HttpGet("GetUsuario")]
+        public IActionResult GetUsuario(int id) {
+            return Ok(_usuarioService.GetUsuario(id));
+        }
     }
 }
