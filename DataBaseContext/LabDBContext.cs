@@ -18,6 +18,7 @@ namespace DataBaseContext
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<PerfilMenu> PerfilMenu { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 
@@ -136,6 +137,36 @@ namespace DataBaseContext
                     .HasForeignKey(d => d.ModificadoPor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PerfilMenu_ModificadoPor");
+            });
+
+            modelBuilder.Entity<Cliente>(entity => {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+                entity.Property(e => e.Edad).HasColumnName("edad");
+                entity.Property(e => e.FechaNacimiento).HasColumnName("fechaNacimiento").HasColumnType("datetime");
+                entity.Property(e => e.Sexo).HasColumnName("sexo");
+                entity.Property(e => e.Telefono).HasColumnName("telefono");
+                entity.Property(e => e.NombreDoctor).HasColumnName("nombreDoctor");
+                entity.Property(e => e.Email).HasColumnName("email");
+                entity.Property(e => e.NumeroPasaporte).HasColumnName("numeroPasaporte");
+                entity.Property(e => e.CreadoPor).HasColumnName("creadoPor");
+                entity.Property(e => e.Creado).HasColumnName("creado").HasColumnType("datetime").HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+                entity.Property(e => e.ModificadoPor).HasColumnName("modificadoPor");
+                entity.Property(e => e.Modificado).HasColumnName("modificado").HasColumnType("datetime");
+
+                entity.HasOne(d => d.CreadoPorNavigation)
+                    .WithMany(p => p.ClienteCreadoPorNavigation)
+                    .HasForeignKey(d => d.CreadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cliente_CreadoPor");
+
+                entity.HasOne(d => d.ModificadoPorNavigation)
+                    .WithMany(p => p.ClienteModificadoPorNavigation)
+                    .HasForeignKey(d => d.ModificadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cliente_ModificadoPor");
             });
         }
     }

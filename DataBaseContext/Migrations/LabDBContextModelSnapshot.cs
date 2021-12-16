@@ -17,6 +17,72 @@ namespace DataBaseContext.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("DataBaseContext.Models.Cliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("Creado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("creado")
+                        .HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+
+                    b.Property<int>("CreadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("creadoPor");
+
+                    b.Property<int>("Edad")
+                        .HasColumnType("int")
+                        .HasColumnName("edad");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("email");
+
+                    b.Property<DateTime?>("FechaNacimiento")
+                        .HasColumnType("datetime")
+                        .HasColumnName("fechaNacimiento");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime")
+                        .HasColumnName("modificado");
+
+                    b.Property<int?>("ModificadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("modificadoPor");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("nombre");
+
+                    b.Property<string>("NombreDoctor")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("nombreDoctor");
+
+                    b.Property<string>("NumeroPasaporte")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("numeroPasaporte");
+
+                    b.Property<string>("Sexo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("sexo");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("telefono");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreadoPor");
+
+                    b.HasIndex("ModificadoPor");
+
+                    b.ToTable("Cliente");
+                });
+
             modelBuilder.Entity("DataBaseContext.Models.Menu", b =>
                 {
                     b.Property<int>("Id")
@@ -215,6 +281,24 @@ namespace DataBaseContext.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("DataBaseContext.Models.Cliente", b =>
+                {
+                    b.HasOne("DataBaseContext.Models.Usuario", "CreadoPorNavigation")
+                        .WithMany("ClienteCreadoPorNavigation")
+                        .HasForeignKey("CreadoPor")
+                        .HasConstraintName("FK_Cliente_CreadoPor")
+                        .IsRequired();
+
+                    b.HasOne("DataBaseContext.Models.Usuario", "ModificadoPorNavigation")
+                        .WithMany("ClienteModificadoPorNavigation")
+                        .HasForeignKey("ModificadoPor")
+                        .HasConstraintName("FK_Cliente_ModificadoPor");
+
+                    b.Navigation("CreadoPorNavigation");
+
+                    b.Navigation("ModificadoPorNavigation");
+                });
+
             modelBuilder.Entity("DataBaseContext.Models.Menu", b =>
                 {
                     b.HasOne("DataBaseContext.Models.Usuario", "CreadoPorNavigation")
@@ -301,6 +385,10 @@ namespace DataBaseContext.Migrations
 
             modelBuilder.Entity("DataBaseContext.Models.Usuario", b =>
                 {
+                    b.Navigation("ClienteCreadoPorNavigation");
+
+                    b.Navigation("ClienteModificadoPorNavigation");
+
                     b.Navigation("InverseCreadoPorNavigation");
 
                     b.Navigation("InverseModificadoPorNavigation");

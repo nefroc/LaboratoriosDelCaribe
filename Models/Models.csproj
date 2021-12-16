@@ -9,11 +9,13 @@
     <None Remove="DTOs\" />
     <None Remove="DTOs\Usuario\" />
     <None Remove="DTOs\Menu\" />
+    <None Remove="DTOs\Cliente\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="DTOs\" />
     <Folder Include="DTOs\Usuario\" />
     <Folder Include="DTOs\Menu\" />
+    <Folder Include="DTOs\Cliente\" />
   </ItemGroup>
 </Project>

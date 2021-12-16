@@ -55,6 +55,7 @@
     <None Remove="Areas\Catalogos\Controllers\" />
     <None Remove="Areas\Catalogos\Views\" />
     <None Remove="Areas\Catalogos\Views\Usuarios\" />
+    <None Remove="Areas\Catalogos\Views\Cliente\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />
@@ -66,5 +67,6 @@
     <Folder Include="Areas\Catalogos\Controllers\" />
     <Folder Include="Areas\Catalogos\Views\" />
     <Folder Include="Areas\Catalogos\Views\Usuarios\" />
+    <Folder Include="Areas\Catalogos\Views\Cliente\" />
   </ItemGroup>
 </Project>

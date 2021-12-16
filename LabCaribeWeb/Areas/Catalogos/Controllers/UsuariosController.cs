@@ -5,6 +5,7 @@ using LabCaribeWeb.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Tools;
 using Models.DTOs.Usuario;
+using Models.DTOs;
 
 namespace LabCaribeWeb.Areas.Catalogos.Controllers
 {
@@ -98,6 +99,21 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
             }
             else {
                 throw new Exception(result.message);
+            }
+        }
+
+        [HttpGet]
+        [SessionValidate]
+        public async Task<IActionResult> GetPerfiles() {
+            RequestSender request = new RequestSender(Global.UrlAPI);
+            dtoResult<ListaDTO> result = await request.GetList<ListaDTO>("Perfil/GetPerfiles");
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.result);
+            }
+            else {
+                return new JsonResult(null);
             }
         }
     }

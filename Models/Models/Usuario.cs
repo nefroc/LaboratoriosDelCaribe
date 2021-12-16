@@ -48,5 +48,8 @@ namespace DataBaseContext.Models
         public virtual ICollection<PerfilMenu> PerfilMenuCreadoPorNavigation { get; set; }
         [JsonIgnore]
         public virtual ICollection<PerfilMenu> PerfilMenuModificadoPorNavigation { get; set; }
+
+        public virtual ICollection<Cliente> ClienteCreadoPorNavigation { get; set; }
+        public virtual ICollection<Cliente> ClienteModificadoPorNavigation { get; set; }
     }
 }

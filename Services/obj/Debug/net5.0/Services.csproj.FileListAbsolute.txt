@@ -13,7 +13,6 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.AssemblyInfoInputs.cache
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.AssemblyInfo.cs
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.csproj.CoreCompileInputs.cache
-/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.csproj.CopyComplete
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/ref/Services.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/obj/Debug/net5.0/Services.pdb
