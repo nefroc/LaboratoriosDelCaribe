@@ -15,3 +15,4 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/net5.0/ref/DataBaseContext.dll
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/net5.0/DataBaseContext.pdb
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/net5.0/DataBaseContext.genruntimeconfig.cache
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/DataBaseContext/obj/Debug/net5.0/DataBaseContext.csproj.CopyComplete

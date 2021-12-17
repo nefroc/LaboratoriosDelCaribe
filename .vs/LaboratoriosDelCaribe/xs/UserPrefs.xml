@@ -1,15 +1,12 @@
 ﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
   <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Catalogos/Controllers/ClientesController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Catalogos/Views/Clientes/Index.cshtml">
     <Files>
-      <File FileName="Services/Services/UsuarioService.cs" Line="30" Column="64" />
-      <File FileName="Services/Services/ClienteService.cs" Line="26" Column="26" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/ClientesController.cs" Line="41" Column="17" />
+      <File FileName="LabCaribeWeb/Controllers/API/ClienteController.cs" Line="18" Column="30" />
+      <File FileName="Services/Services/ClienteService.cs" Line="58" Column="1" />
       <File FileName="Services/Interfaces/IClienteService.cs" Line="8" Column="19" />
-      <File FileName="LabCaribeWeb/Controllers/API/ClienteController.cs" Line="24" Column="2" />
-      <File FileName="LabCaribeWeb/Controllers/API/PerfilController.cs" Line="7" Column="1" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/ClienteController.cs" Line="17" Column="24" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/UsuariosController.cs" Line="22" Column="9" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Cliente/Index.cshtml" Line="7" Column="13" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Clientes/Index.cshtml" Line="156" Column="67" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,11 +17,21 @@
                 <Node name="Catalogos" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
+                    <Node name="Clientes" expanded="True">
+                      <Node name="Index.cshtml" selected="True" />
+                    </Node>
                     <Node name="Usuarios" expanded="True" />
                   </Node>
                 </Node>
               </Node>
-              <Node name="Views" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="API" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Models" expanded="True">
+              <Node name="DTOs" expanded="True">
+                <Node name="Cliente" expanded="True" />
+              </Node>
             </Node>
             <Node name="Services" expanded="True">
               <Node name="Interfaces" expanded="True" />
@@ -40,6 +47,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/Services/Services/ClienteService.cs" relfile="Services/Services/ClienteService.cs" line="28" column="1" />
+      <Breakpoint file="/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/Areas/Catalogos/Controllers/ClientesController.cs" relfile="LabCaribeWeb/Areas/Catalogos/Controllers/ClientesController.cs" line="37" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

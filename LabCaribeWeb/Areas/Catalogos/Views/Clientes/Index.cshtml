@@ -4,4 +4,171 @@
 
 }
 
-<h1>Hola Clientes</h1>
+<!-- Encabezado -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">@ViewData["Title"]</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item">Catálogos</li>
+            <li class="breadcrumb-item active">Clientes</li>
+        </ol>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<div id="Clientes">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <button type="button" class="btn btn-info btn-sm" @@click="btnNuevoCliente_click"><i class="fa fa-plus-circle"></i>Nuevo Cliente</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Dialog cliente*@
+    <el-dialog title="Cliente" :visible.sync="mostrarDialog">
+        <el-form :model="cliente" ref="cliente" :rules="rulesCliente">
+            <div class="row">
+                <div class="col-lg-6">
+                    <el-form-item label="Nombre" prop="nombre">
+                        <el-input v-model="cliente.nombre"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <el-form-item label="Edad" prop="edad">
+                        <el-input v-model.number="cliente.edad"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <el-form-item label="Fecha de Nacimiento" prop="fechaNacimiento">
+                        <el-date-picker type="date" placeholder="Fecha" v-model="cliente.fechaNacimiento" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <el-form-item label="Sexo" prop="sexo">
+                        <br />
+                        <el-radio-group v-model="cliente.sexo">
+                            <el-radio label="H">Hombre</el-radio>
+                            <el-radio label="M">Mujer</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <el-form-item label="Teléfono" prop="telefono">
+                        <el-input v-model="cliente.telefono"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <el-form-item label="Email" prop="email">
+                        <el-input v-model="cliente.email"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <el-form-item label="Número Pasaporte" prop="numeroPasaporte">
+                        <el-input v-model="cliente.numeroPasaporte"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="col-lg-6">
+                    <el-form-item label="Nombre Doctor" prop="nombreDoctor">
+                        <el-input v-model="cliente.nombreDoctor"></el-input>
+                    </el-form-item>
+                </div>
+            </div>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @@click="mostrarDialog = false">Cancelar</el-button>
+            <el-button type="primary" @@click="btnGuardar_click">Guardar</el-button>
+        </span>
+    </el-dialog>
+</div>
+
+@section Scripts{
+    <script>var app = new Vue({
+            el: '#Clientes',
+            data: {
+                cliente: {
+                    id: null,
+                    nombre: null,
+                    edad: null,
+                    fechaNacimiento: null,
+                    sexo: null,
+                    telefono: null,
+                    nombreDoctor: null,
+                    email: null,
+                    numeroPasaporte: null,
+                    usuario: null
+                },
+                mostrarDialog: false,
+                rulesCliente: {
+                    nombre: { required: true, message: 'El nombre es requerido.', trigger: 'blur' },
+                    edad: [
+                        { required: true, message: 'La edad es requerida', trigger: 'blur' },
+                        { type: 'number', message: 'La edad debe ser numérica' }
+                    ],
+                    fechaNacimiento: { type: 'date', required: true, message: 'La fecha de nacimiento es requerida', trigger: 'change' },
+                    sexo: { required: true, message: 'El sexo es requerido', trigger: 'change' }
+                }
+            },
+            methods: {
+                btnNuevoCliente_click: function () {
+                    this.cliente = {
+                        id: -1,
+                        nombre: null,
+                        edad: null,
+                        fechaNacimiento: null,
+                        sexo: null,
+                        telefono: null,
+                        nombreDoctor: null,
+                        email: null,
+                        numeroPasaporte: null,
+                        usuario: null
+                    }
+
+                    this.mostrarDialog = true;
+                },
+                btnGuardar_click: function () {
+                    this.$refs['cliente'].validate((valid) => {
+                        if (valid) {
+                            try {
+                                axios.post('@Url.Action("SetCliente", "Clientes")', this.cliente).then(response => {
+                                    console.log('Data', response.data)
+                                    if (response.data === 'ok') {
+                                        this.mostrarDialog = false
+                                        this.$message.success('Los datos del cliente se han guardado.');
+                                    } else {
+                                        this.$message.error(response.data);
+                                    }
+                                }).catch(e => {
+                                    this.$message.error('Error al actualizar el usuario.');
+                                });
+                            } catch (error) {
+                                this.$message.error(error);
+                            }
+                        } else {
+                            return false;
+                        }
+                    });
+                }
+            }
+        });</script>
+}

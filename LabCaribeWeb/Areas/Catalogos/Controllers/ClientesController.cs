@@ -6,6 +6,8 @@ using LabCaribeWeb.Filters;
 using LabCaribeWeb.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTOs.Cliente;
+using Tools;
 
 namespace LabCaribeWeb.Areas.Catalogos.Controllers
 {
@@ -22,6 +24,24 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [SessionValidate]
+        public async Task<IActionResult> SetCliente([FromBody] ClienteDTO cliente) {
+            cliente.usuario = _sessionManager.IdUsuario;
+
+            RequestSender requestSender = new RequestSender(Global.UrlAPI);
+            dtoResult<string> result = await requestSender.Post<string>("Cliente/SetCliente", cliente);
+
+            if (result.Estatus)
+            {
+                return new JsonResult(result.valor);
+            }
+            else
+            {
+                throw new Exception(result.message);
+            }
         }
     }
 }
