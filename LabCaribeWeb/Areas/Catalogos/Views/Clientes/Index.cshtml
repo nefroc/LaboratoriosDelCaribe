@@ -32,7 +32,37 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>NOMBRE</th>
+                                            <th>EDAD</th>
+                                            <th>FECHA NACIMIENTO</th>
+                                            <th>SEXO</th>
+                                            <th>TELEFONO</th>
+                                            <th>EMAIL</th>
+                                            <th>NUM PASAPORTE</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in listaClientes">
+                                            <td>{{item.nombre}}</td>
+                                            <td>{{item.edad}}</td>
+                                            <td>{{item.fechaNacimiento | fechaCorta}}</td>
+                                            <td>{{item.sexo}}</td>
+                                            <td>{{item.telefono}}</td>
+                                            <td>{{item.email}}</td>
+                                            <td>{{item.numeroPasaporte}}</td>
+                                            <td nowrap>
+                                                <button type="button" class="btn waves-effect waves-light btn-outline-info btn-sm" @@click="btnBuscarCliente_click(item.id)">Editar</button>
+                                                <button type="button" class="btn waves-effect waves-light btn-outline-danger btn-sm" @@click="btnEliminarCliente_click(item)">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,14 +80,14 @@
                 </div>
                 <div class="col-lg-6">
                     <el-form-item label="Edad" prop="edad">
-                        <el-input v-model.number="cliente.edad"></el-input>
+                        <el-input v-model.number="cliente.edad" v-on:change="txtEdad_change"></el-input>
                     </el-form-item>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <el-form-item label="Fecha de Nacimiento" prop="fechaNacimiento">
-                        <el-date-picker type="date" placeholder="Fecha" v-model="cliente.fechaNacimiento" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" format="dd-MM-yyyy" placeholder="Fecha" v-model="cliente.fechaNacimiento" style="width: 100%;"></el-date-picker>
                     </el-form-item>
                 </div>
                 <div class="col-lg-6">
@@ -97,20 +127,21 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @@click="mostrarDialog = false">Cancelar</el-button>
-            <el-button type="primary" @@click="btnGuardar_click">Guardar</el-button>
+            <el-button type="primary" @@click="btnGuardar_click">{{cliente.id === -1 ? 'Agregar' : 'Actualizar'}}</el-button>
         </span>
     </el-dialog>
 </div>
 
 @section Scripts{
-    <script>var app = new Vue({
+    <script>
+        var app = new Vue({
             el: '#Clientes',
             data: {
                 cliente: {
                     id: null,
                     nombre: null,
                     edad: null,
-                    fechaNacimiento: null,
+                    fechaNacimiento: new Date(),
                     sexo: null,
                     telefono: null,
                     nombreDoctor: null,
@@ -125,9 +156,10 @@
                         { required: true, message: 'La edad es requerida', trigger: 'blur' },
                         { type: 'number', message: 'La edad debe ser numérica' }
                     ],
-                    fechaNacimiento: { type: 'date', required: true, message: 'La fecha de nacimiento es requerida', trigger: 'change' },
+                    fechaNacimiento: { required: true, message: 'La fecha de nacimiento es requerida', trigger: 'change' },
                     sexo: { required: true, message: 'El sexo es requerido', trigger: 'change' }
-                }
+                },
+                listaClientes: []
             },
             methods: {
                 btnNuevoCliente_click: function () {
@@ -135,7 +167,7 @@
                         id: -1,
                         nombre: null,
                         edad: null,
-                        fechaNacimiento: null,
+                        fechaNacimiento: new Date(),
                         sexo: null,
                         telefono: null,
                         nombreDoctor: null,
@@ -147,19 +179,35 @@
                     this.mostrarDialog = true;
                 },
                 btnGuardar_click: function () {
+                    console.log('dio click');
                     this.$refs['cliente'].validate((valid) => {
                         if (valid) {
                             try {
                                 axios.post('@Url.Action("SetCliente", "Clientes")', this.cliente).then(response => {
-                                    console.log('Data', response.data)
                                     if (response.data === 'ok') {
                                         this.mostrarDialog = false
+
+                                        this.cliente = {
+                                            id: -1,
+                                            nombre: null,
+                                            edad: null,
+                                            fechaNacimiento: null,
+                                            sexo: null,
+                                            telefono: null,
+                                            nombreDoctor: null,
+                                            email: null,
+                                            numeroPasaporte: null,
+                                            usuario: null
+                                        }
+
+                                        this.getClientes()
+
                                         this.$message.success('Los datos del cliente se han guardado.');
                                     } else {
                                         this.$message.error(response.data);
                                     }
                                 }).catch(e => {
-                                    this.$message.error('Error al actualizar el usuario.');
+                                    this.$message.error(e);
                                 });
                             } catch (error) {
                                 this.$message.error(error);
@@ -168,7 +216,66 @@
                             return false;
                         }
                     });
+                },
+                getClientes: function () {
+                    axios.get('@Url.Action("GetListaClientes", "Clientes")').then(response => {
+                        this.listaClientes = response.data;
+                    }).catch(e => {
+                        this.$message.error('No se han podido cargar los Clientes.');
+                    });
+                },
+                txtEdad_change: function (value) {
+                    try {
+                        if (this.cliente.id === -1) {
+                            let fechaActual = new Date();
+                            let anio = fechaActual.getFullYear() - parseInt(value)
+
+                            this.cliente.fechaNacimiento = new Date(anio, 1, 1);
+                        }
+                    } catch { }
+                },
+                btnBuscarCliente_click: function (id) {
+                    axios.get('@Url.Action("GetCliente", "Clientes")?idCliente=' + id).then(response => {
+                            this.cliente = response.data
+                            this.mostrarDialog = true;
+                        }).catch(e => {
+                            this.$message.error('Error al obtener el usuario.');
+                        });
+                },
+                btnEliminarCliente_click: function (item) {
+                    this.$confirm('El cliente ' + item.nombre + ' se eliminará permanentemente. ¿Desea continuar?', 'Confirmar', {
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No',
+                        type: 'warning'
+                    }).then(() => {
+                        try {
+                            axios.delete('@Url.Action("SetEliminarCliente", "Clientes")?idCliente=' + item.id).then(response => {
+                                if (response.data === "ok") {
+                                    this.getClientes();
+
+                                    this.$message({
+                                        type: 'success',
+                                        message: 'El cliente ' + item.nombre + ' se ha eliminado'
+                                    });
+                                } else {
+                                    this.$message.error(response.data);
+                                }
+                            }).catch(e => {
+                                this.$message.error('Error al eliminar el cliente.');
+                            });
+                        } catch (error) {
+                            this.$message.error(error);
+                        }
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: 'Proceso cancelado.'
+                        });
+                    });
                 }
+            },
+            mounted: function () {
+                this.getClientes()
             }
         });</script>
 }

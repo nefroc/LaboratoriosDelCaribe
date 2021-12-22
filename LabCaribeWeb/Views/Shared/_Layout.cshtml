@@ -218,8 +218,9 @@
     <script src="https://unpkg.com/axios@0.21.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
     <script src="https://unpkg.com/element-ui@2.14.1/lib/umd/locale/es.js"></script>
-    <script>
-        ELEMENT.locale(ELEMENT.lang.es);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es-mx.min.js" integrity="sha512-Qy4cmZ6v7vnVEc0cn/BIj9q15eB98do4hMvu8xtc/H+v+YYpdpDrB35flHS3NPLbZUpe1npSYY/u+Gi3UB61vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>ELEMENT.locale(ELEMENT.lang.es);
         Vue.prototype.$ELEMENT.zIndex = 3000</script>
     <script>
         Vue.component('item', {
@@ -228,6 +229,28 @@
                 model: Object
             }
         })
+
+        const Header = new Vue({
+            el: "#vheader",
+            data() {
+                return {
+                    fullLoading: false
+                }
+            },
+            methods: {
+                showLoading() {
+                    this.fullLoading = this.$loading({
+                        lock: true,
+                        text: 'Cargando',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
+                },
+                closeLoading() {
+                    this.fullLoading.close();
+                }
+            }
+        });
 
         var appMenu = new Vue({
             el: '#menu',
@@ -248,6 +271,12 @@
         Vue.filter('activo', function (value) {
             if (value) {
                 return value === true ? 'SI' : 'NO'
+            }
+        })
+
+        Vue.filter('fechaCorta', function (value) {
+            if (value) {
+                return moment(String(value)).format('DD/MM/YYYY')
             }
         })
     </script>

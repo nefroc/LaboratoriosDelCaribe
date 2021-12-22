@@ -273,7 +273,7 @@
                 },
                 btnBuscarUsuario_click: function (id) {
                     this.obtenerListaPerfiles();
-                    axios.get('@Url.Action("GetUsuario", "Usuarios")?idUsuario=' + id, this.nuevoUsuario).then(response => {
+                    axios.get('@Url.Action("GetUsuario", "Usuarios")?idUsuario=' + id).then(response => {
                             console.log(response.data)
                         this.actualizarUsuario = response.data
                         this.dialogActualizarUsuario = true;

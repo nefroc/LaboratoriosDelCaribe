@@ -20,5 +20,20 @@ namespace LabCaribeWeb.Controllers.API
         {
             return Ok(_clienteService.SetCliente(cliente));
         }
+
+        [HttpGet("GetListaClientes")]
+        public IActionResult GetListaClientes() {
+            return Ok(_clienteService.GetListaClientes());
+        }
+
+        [HttpGet("GetCliente")]
+        public IActionResult GetCliente(int idCliente) {
+            return Ok(_clienteService.GetCliente(idCliente));
+        }
+
+        [HttpDelete("SetEliminarCliente")]
+        public IActionResult SetEliminarCliente(int id) {
+            return Ok(_clienteService.SetEliminarCliente(id));
+        }
     }
 }

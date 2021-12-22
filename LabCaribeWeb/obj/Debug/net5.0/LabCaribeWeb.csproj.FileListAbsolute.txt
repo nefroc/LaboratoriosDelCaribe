@@ -420,7 +420,6 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.RazorAssemblyInfo.cache
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.RazorAssemblyInfo.cs
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/staticwebassets/LabCaribeWeb.StaticWebAssets.Manifest.cache
-/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/staticwebassets/LabCaribeWeb.StaticWebAssets.xml
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/scopedcss/bundle/LabCaribeWeb.styles.css
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.TagHelpers.input.cache
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.TagHelpers.output.cache
