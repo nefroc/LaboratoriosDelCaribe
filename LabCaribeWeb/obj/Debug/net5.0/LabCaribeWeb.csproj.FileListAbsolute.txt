@@ -441,3 +441,4 @@
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.pdb
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/LabCaribeWeb.genruntimeconfig.cache
 /Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/Razor/Areas/Catalogos/Views/Clientes/Index.cshtml.g.cs
+/Users/neftalirodriguez/Projects/LaboratoriosDelCaribe/LabCaribeWeb/obj/Debug/net5.0/Razor/Areas/Covid/Views/CovidTest/Index.cshtml.g.cs

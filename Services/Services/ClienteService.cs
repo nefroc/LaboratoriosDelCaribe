@@ -79,7 +79,8 @@ namespace Services.Services
                 try
                 {
                     clientes = con.Query<ClienteDTO>("select id, nombre, edad, fechaNacimiento, sexo, telefono, nombreDoctor, email, ifnull(numeroPasaporte, '') as numeroPasaporte, creadoPor as usuario " +
-                                                     "from LabDelCaribe.Cliente").ToList();
+                                                     "from LabDelCaribe.Cliente " +
+                                                     "order by nombre").ToList();
                 }
                 catch (Exception ex)
                 {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace DataBaseContext.Models
 {
     public class Cliente
@@ -19,5 +21,7 @@ namespace DataBaseContext.Models
 
         public virtual Usuario CreadoPorNavigation { get; set; }
         public virtual Usuario ModificadoPorNavigation { get; set; }
+
+        public virtual ICollection<COVIDTest> COVIDTestNavigation { get; set; }
     }
 }

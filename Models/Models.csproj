@@ -10,6 +10,7 @@
     <None Remove="DTOs\Usuario\" />
     <None Remove="DTOs\Menu\" />
     <None Remove="DTOs\Cliente\" />
+    <None Remove="DTOs\CovidTest\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -17,5 +18,6 @@
     <Folder Include="DTOs\Usuario\" />
     <Folder Include="DTOs\Menu\" />
     <Folder Include="DTOs\Cliente\" />
+    <Folder Include="DTOs\CovidTest\" />
   </ItemGroup>
 </Project>

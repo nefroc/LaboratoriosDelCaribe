@@ -11,6 +11,7 @@ namespace LabCaribeWeb
             services.AddTransient<IMenuService, MenuService>();
             services.AddTransient<IPerfilService, PerfilService>();
             services.AddTransient<IClienteService, ClienteService>();
+            services.AddTransient<ICovidTestService, CovidTestService>();
 
             return services;
         }

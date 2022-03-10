@@ -7,10 +7,6 @@ namespace DataBaseContext.Models
 {
     public class Usuario
     {
-        public Usuario()
-        {
-        }
-
         public int Id { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
@@ -23,33 +19,31 @@ namespace DataBaseContext.Models
         public int? ModificadoPor { get; set; }
         public DateTime? Modificado { get; set; }
 
-        [JsonIgnore]
         public virtual Usuario CreadoPorNavigation { get; set; }
-        [JsonIgnore]
+
         public virtual Usuario ModificadoPorNavigation { get; set; }
+
         public virtual Perfil PerfilNavigation { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<Usuario> InverseCreadoPorNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Usuario> InverseModificadoPorNavigation { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<Menu> MenuCreadoPorNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Menu> MenuModificadoPorNavigation { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<Perfil> PerfilCreadoPorNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Perfil> PerfilModificadoPorNavigation { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<PerfilMenu> PerfilMenuCreadoPorNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<PerfilMenu> PerfilMenuModificadoPorNavigation { get; set; }
 
         public virtual ICollection<Cliente> ClienteCreadoPorNavigation { get; set; }
         public virtual ICollection<Cliente> ClienteModificadoPorNavigation { get; set; }
+
+        public virtual ICollection<CatalogoTest> CatalogoTestCreadoPorNavigation { get; set; }
+        public virtual ICollection<CatalogoTest> CatalogoTestModificadoPorNavigation { get; set; }
+
+        public virtual ICollection<COVIDTest> COVIDTestCreadoPorNavigation { get; set; }
+        public virtual ICollection<COVIDTest> COVIDTestModificadoPorNavigation { get; set; }
     }
 }

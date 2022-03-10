@@ -3,7 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-
+<style>
+    .el-table, .el-table tr, .el-table td, .el-table th {
+        background-color: transparent !important;
+    }
+</style>
 <!-- Encabezado -->
 <!-- ============================================================== -->
 <div class="row page-titles">
@@ -26,7 +30,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-12 text-right">
+                        <div class="col-lg-9">
+                            <el-input v-model="search" size="mini" placeholder="Buscar por nombre..." />
+                        </div>
+                        <div class="col-lg-3 text-right">
                             <button type="button" class="btn btn-info btn-sm" @@click="btnNuevoCliente_click"><i class="fa fa-plus-circle"></i>Nuevo Cliente</button>
                         </div>
                     </div>
@@ -47,7 +54,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in listaClientes">
+                                        <tr v-for="item in listaClientes.filter(data => !search || data.nombre.toLowerCase().includes(search.toLowerCase()))">
                                             <td>{{item.nombre}}</td>
                                             <td>{{item.edad}}</td>
                                             <td>{{item.fechaNacimiento | fechaCorta}}</td>
@@ -159,7 +166,8 @@
                     fechaNacimiento: { required: true, message: 'La fecha de nacimiento es requerida', trigger: 'change' },
                     sexo: { required: true, message: 'El sexo es requerido', trigger: 'change' }
                 },
-                listaClientes: []
+                listaClientes: [],
+                search: ''
             },
             methods: {
                 btnNuevoCliente_click: function () {

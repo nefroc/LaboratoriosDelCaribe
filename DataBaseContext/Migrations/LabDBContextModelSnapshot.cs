@@ -17,6 +17,100 @@ namespace DataBaseContext.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("DataBaseContext.Models.COVIDTest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("Creado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("creado")
+                        .HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+
+                    b.Property<int>("CreadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("creadoPor");
+
+                    b.Property<int>("IdCatalogoTest")
+                        .HasColumnType("int")
+                        .HasColumnName("idCatalogoTest");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int")
+                        .HasColumnName("idCliente");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime")
+                        .HasColumnName("modificado");
+
+                    b.Property<int?>("ModificadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("modificadoPor");
+
+                    b.Property<string>("NumeroAutorizacion")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("numeroAutorizacion");
+
+                    b.Property<string>("RdRP")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("RdRP");
+
+                    b.Property<string>("Resultado")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("resultado");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreadoPor");
+
+                    b.HasIndex("IdCliente");
+
+                    b.HasIndex("ModificadoPor");
+
+                    b.ToTable("COVIDTest");
+                });
+
+            modelBuilder.Entity("DataBaseContext.Models.CatalogoTest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("Creado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("creado")
+                        .HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+
+                    b.Property<int>("CreadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("creadoPor");
+
+                    b.Property<DateTime?>("Modificado")
+                        .HasColumnType("datetime")
+                        .HasColumnName("modificado");
+
+                    b.Property<int?>("ModificadoPor")
+                        .HasColumnType("int")
+                        .HasColumnName("modificadoPor");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("nombre");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreadoPor");
+
+                    b.HasIndex("ModificadoPor");
+
+                    b.ToTable("CatalogoTest");
+                });
+
             modelBuilder.Entity("DataBaseContext.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -281,6 +375,57 @@ namespace DataBaseContext.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("DataBaseContext.Models.COVIDTest", b =>
+                {
+                    b.HasOne("DataBaseContext.Models.Usuario", "CreadoPorNavigation")
+                        .WithMany("COVIDTestCreadoPorNavigation")
+                        .HasForeignKey("CreadoPor")
+                        .HasConstraintName("FK_COVIDTest_CreadoPor")
+                        .IsRequired();
+
+                    b.HasOne("DataBaseContext.Models.Cliente", "ClienteNavigation")
+                        .WithMany("COVIDTestNavigation")
+                        .HasForeignKey("IdCliente")
+                        .HasConstraintName("FK_COVIDTest_Cliente")
+                        .IsRequired();
+
+                    b.HasOne("DataBaseContext.Models.CatalogoTest", "CatalogoTestNavigation")
+                        .WithMany("COVIDTestNavigation")
+                        .HasForeignKey("ModificadoPor")
+                        .HasConstraintName("FK_COVIDTest_CatalogoTest");
+
+                    b.HasOne("DataBaseContext.Models.Usuario", "ModificadoPorNavigation")
+                        .WithMany("COVIDTestModificadoPorNavigation")
+                        .HasForeignKey("ModificadoPor")
+                        .HasConstraintName("FK_COVIDTest_ModificadoPor");
+
+                    b.Navigation("CatalogoTestNavigation");
+
+                    b.Navigation("ClienteNavigation");
+
+                    b.Navigation("CreadoPorNavigation");
+
+                    b.Navigation("ModificadoPorNavigation");
+                });
+
+            modelBuilder.Entity("DataBaseContext.Models.CatalogoTest", b =>
+                {
+                    b.HasOne("DataBaseContext.Models.Usuario", "CreadoPorNavigation")
+                        .WithMany("CatalogoTestCreadoPorNavigation")
+                        .HasForeignKey("CreadoPor")
+                        .HasConstraintName("FK_CatalogoTest_CreadoPor")
+                        .IsRequired();
+
+                    b.HasOne("DataBaseContext.Models.Usuario", "ModificadoPorNavigation")
+                        .WithMany("CatalogoTestModificadoPorNavigation")
+                        .HasForeignKey("ModificadoPor")
+                        .HasConstraintName("FK_CatalogoTest_ModificadoPor");
+
+                    b.Navigation("CreadoPorNavigation");
+
+                    b.Navigation("ModificadoPorNavigation");
+                });
+
             modelBuilder.Entity("DataBaseContext.Models.Cliente", b =>
                 {
                     b.HasOne("DataBaseContext.Models.Usuario", "CreadoPorNavigation")
@@ -378,6 +523,16 @@ namespace DataBaseContext.Migrations
                     b.Navigation("PerfilNavigation");
                 });
 
+            modelBuilder.Entity("DataBaseContext.Models.CatalogoTest", b =>
+                {
+                    b.Navigation("COVIDTestNavigation");
+                });
+
+            modelBuilder.Entity("DataBaseContext.Models.Cliente", b =>
+                {
+                    b.Navigation("COVIDTestNavigation");
+                });
+
             modelBuilder.Entity("DataBaseContext.Models.Perfil", b =>
                 {
                     b.Navigation("UsuarioNavigation");
@@ -385,9 +540,17 @@ namespace DataBaseContext.Migrations
 
             modelBuilder.Entity("DataBaseContext.Models.Usuario", b =>
                 {
+                    b.Navigation("CatalogoTestCreadoPorNavigation");
+
+                    b.Navigation("CatalogoTestModificadoPorNavigation");
+
                     b.Navigation("ClienteCreadoPorNavigation");
 
                     b.Navigation("ClienteModificadoPorNavigation");
+
+                    b.Navigation("COVIDTestCreadoPorNavigation");
+
+                    b.Navigation("COVIDTestModificadoPorNavigation");
 
                     b.Navigation("InverseCreadoPorNavigation");
 

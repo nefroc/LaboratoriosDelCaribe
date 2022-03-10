@@ -19,6 +19,8 @@ namespace DataBaseContext
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<PerfilMenu> PerfilMenu { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<CatalogoTest> CatalogoTest { get; set; }
+        public virtual DbSet<COVIDTest> COVIDTest { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 
@@ -28,7 +30,7 @@ namespace DataBaseContext
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Usuario>(entity => {
-                
+
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id).IsRequired().HasColumnName("id");
@@ -167,6 +169,69 @@ namespace DataBaseContext
                     .HasForeignKey(d => d.ModificadoPor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Cliente_ModificadoPor");
+            });
+
+            modelBuilder.Entity<CatalogoTest>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+                entity.Property(e => e.CreadoPor).HasColumnName("creadoPor");
+                entity.Property(e => e.Creado).HasColumnName("creado").HasColumnType("datetime").HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+                entity.Property(e => e.ModificadoPor).HasColumnName("modificadoPor");
+                entity.Property(e => e.Modificado).HasColumnName("modificado").HasColumnType("datetime");
+
+                entity.HasOne(d => d.CreadoPorNavigation)
+                    .WithMany(p => p.CatalogoTestCreadoPorNavigation)
+                    .HasForeignKey(d => d.CreadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CatalogoTest_CreadoPor");
+
+                entity.HasOne(d => d.ModificadoPorNavigation)
+                    .WithMany(p => p.CatalogoTestModificadoPorNavigation)
+                    .HasForeignKey(d => d.ModificadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CatalogoTest_ModificadoPor");
+            });
+
+            modelBuilder.Entity<COVIDTest>(entity => {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.IdCliente).HasColumnName("idCliente");
+                entity.Property(e => e.IdCatalogoTest).HasColumnName("idCatalogoTest");
+                entity.Property(e => e.Resultado).HasColumnName("resultado");
+                entity.Property(e => e.NumeroAutorizacion).HasColumnName("numeroAutorizacion");
+                entity.Property(e => e.RdRP).HasColumnName("RdRP");
+                entity.Property(e => e.CreadoPor).HasColumnName("creadoPor");
+                entity.Property(e => e.Creado).HasColumnName("creado").HasColumnType("datetime").HasDefaultValueSql("(CURRENT_TIMESTAMP)");
+                entity.Property(e => e.ModificadoPor).HasColumnName("modificadoPor");
+                entity.Property(e => e.Modificado).HasColumnName("modificado").HasColumnType("datetime");
+
+                entity.HasOne(d => d.ClienteNavigation)
+                    .WithMany(p => p.COVIDTestNavigation)
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COVIDTest_Cliente");
+
+                entity.HasOne(d => d.CreadoPorNavigation)
+                    .WithMany(p => p.COVIDTestCreadoPorNavigation)
+                    .HasForeignKey(d => d.CreadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COVIDTest_CreadoPor");
+
+                entity.HasOne(d => d.ModificadoPorNavigation)
+                    .WithMany(p => p.COVIDTestModificadoPorNavigation)
+                    .HasForeignKey(d => d.ModificadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COVIDTest_ModificadoPor");
+
+                entity.HasOne(d => d.CatalogoTestNavigation)
+                    .WithMany(p => p.COVIDTestNavigation)
+                    .HasForeignKey(d => d.ModificadoPor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COVIDTest_CatalogoTest");
             });
         }
     }

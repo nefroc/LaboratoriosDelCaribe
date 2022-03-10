@@ -17,7 +17,6 @@ namespace DataBaseContext.Models
         public virtual Usuario CreadoPorNavigation { get; set; }
         public virtual Usuario ModificadoPorNavigation { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<Usuario> UsuarioNavigation { get; set; }
     }
 }

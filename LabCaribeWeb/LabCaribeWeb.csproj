@@ -55,6 +55,10 @@
     <None Remove="Areas\Catalogos\Controllers\" />
     <None Remove="Areas\Catalogos\Views\" />
     <None Remove="Areas\Catalogos\Views\Usuarios\" />
+    <None Remove="Areas\Covid\" />
+    <None Remove="Areas\Covid\Controllers\" />
+    <None Remove="Areas\Covid\Views\" />
+    <None Remove="Areas\Covid\Views\CovidTest\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />
@@ -66,5 +70,9 @@
     <Folder Include="Areas\Catalogos\Controllers\" />
     <Folder Include="Areas\Catalogos\Views\" />
     <Folder Include="Areas\Catalogos\Views\Usuarios\" />
+    <Folder Include="Areas\Covid\" />
+    <Folder Include="Areas\Covid\Controllers\" />
+    <Folder Include="Areas\Covid\Views\" />
+    <Folder Include="Areas\Covid\Views\CovidTest\" />
   </ItemGroup>
 </Project>
