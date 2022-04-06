@@ -35,5 +35,10 @@ namespace LabCaribeWeb.Controllers.API
         public IActionResult SetEliminarCliente(int id) {
             return Ok(_clienteService.SetEliminarCliente(id));
         }
+
+        [HttpGet("AutocompleteCliente")]
+        public IActionResult AutocompleteCliente(string texto) {
+            return Ok(_clienteService.AutocompleteCliente(texto));
+        }
     }
 }

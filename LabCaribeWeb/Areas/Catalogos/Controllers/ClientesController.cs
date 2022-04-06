@@ -6,6 +6,7 @@ using LabCaribeWeb.Filters;
 using LabCaribeWeb.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTOs;
 using Models.DTOs.Cliente;
 using Tools;
 
@@ -81,6 +82,19 @@ namespace LabCaribeWeb.Areas.Catalogos.Controllers
             }
             else {
                 throw new Exception(result.message);
+            }
+        }
+
+        [HttpGet("AutocompleteCliente")]
+        public async Task<IActionResult> AutocompleteCliente(string texto) {
+            RequestSender requestSender = new RequestSender(Global.UrlAPI);
+            dtoResult<ListaDTO> result = await requestSender.GetList<ListaDTO>("Cliente/AutocompleteCliente?texto=" + texto);
+            if (result.Estatus)
+            {
+                return new JsonResult(result.result);
+            }
+            else {
+                return new JsonResult(new List<ListaDTO>());
             }
         }
     }

@@ -21,8 +21,92 @@
 <!-- ============================================================== -->
 <div id="CovidTest">
     <div class="row">
-        <div class="col-lg-12">
-            <h1>{{mensaje}}</h1>
+        <div class="col-lg-6">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h5 class="card-title">Datos del Cliente</h5>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <el-autocomplete placeholder="Buscar cliente"
+                                             v-model="cliente.nombre"
+                                             v-bind:fetch-suggestions="getAutocompleteClientes"
+                                             :trigger-on-focus="false"
+                                             v-bind:value-key="'value'"
+                                             v-bind:popper-class="'fix-autocomplete-lg'"
+                                             v-on:select="autocompleteClienteSeleccionar"
+                                             v-on:clear="autocompleteClienteLimpiar"
+                                             size="mini"
+                                             clearable
+                                             :disabled="cliente.actualizar">
+                                <template slot-scope="{ item }">
+                                    <span v-if="item.id">{{item.item}}</span>
+                                    <span v-else>{{item}}</span>
+                                </template>
+                            </el-autocomplete>
+                        </div>
+                    </div>
+                    <el-form :model="cliente.datos" ref="cliente" :rules="cliente.reglas">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <el-form-item label="Nombre" prop="nombre">
+                                    <el-input v-model="cliente.datos.nombre" size="mini" :disabled="!cliente.actualizar"></el-input>
+                                </el-form-item>
+                            </div>
+                            <div class="col-lg-6">
+                                <el-form-item label="Edad" prop="edad">
+                                    <el-input v-model.number="cliente.datos.edad" size="mini" :disabled="!cliente.actualizar"></el-input>
+                                </el-form-item>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <el-form-item label="Fecha de Nacimiento" prop="fechaNacimiento">
+                                    <el-date-picker type="date" format="dd-MM-yyyy" placeholder="Fecha" v-model="cliente.datos.fechaNacimiento" style="width: 100%;" size="mini" :disabled="!cliente.actualizar"></el-date-picker>
+                                </el-form-item>
+                            </div>
+                            <div class="col-lg-6">
+                                <el-form-item label="Sexo" prop="sexo">
+                                    <br />
+                                    <el-radio-group v-model="cliente.datos.sexo" :disabled="!cliente.actualizar">
+                                        <el-radio label="H">Hombre</el-radio>
+                                        <el-radio label="M">Mujer</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <el-form-item label="Teléfono" prop="telefono">
+                                    <el-input v-model="cliente.datos.telefono" size="mini" :disabled="!cliente.actualizar"></el-input>
+                                </el-form-item>
+                            </div>
+                            <div class="col-lg-6">
+                                <el-form-item label="Email" prop="email">
+                                    <el-input v-model="cliente.datos.email" size="mini" :disabled="!cliente.actualizar"></el-input>
+                                </el-form-item>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <el-form-item label="Número Pasaporte" prop="numeroPasaporte">
+                                    <el-input v-model="cliente.datos.numeroPasaporte" size="mini" :disabled="!cliente.actualizar"></el-input>
+                                </el-form-item>
+                            </div>
+                            <div class="col-lg-6">
+                                <el-checkbox v-model="cliente.actualizar" label="Actualizar datos" border></el-checkbox>
+                            </div>
+                        </div>
+                    </el-form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h5 class="card-title">Datos COVID Test</h5>
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -36,19 +120,126 @@
                     mostrarDialogNuevoTest: false
                 },
                 covidTest: {
-                    id: null,
+                    id: -1,
                     idCatalogoTest: null,
                     resultado: null,
                     numeroAutorizacion: null,
                     rdrp: null,
                     idCliente: null
+                },
+                cliente: {
+                    nombre: null,
+                    actualizar: false,
+                    datos: {
+                        id: null,
+                        nombre: null,
+                        edad: null,
+                        fechaNacimiento: new Date(),
+                        sexo: null,
+                        telefono: null,
+                        nombreDoctor: null,
+                        email: null,
+                        numeroPasaporte: null,
+                        usuario: null
+                    },
+                    reglas: {
+                        nombre: { required: true, message: 'El nombre es requerido.', trigger: 'blur' },
+                        edad: [
+                            { required: true, message: 'La edad es requerida', trigger: 'blur' },
+                            { type: 'number', message: 'La edad debe ser numérica' }
+                        ],
+                        fechaNacimiento: { required: true, message: 'La fecha de nacimiento es requerida', trigger: 'change' },
+                        sexo: { required: true, message: 'El sexo es requerido', trigger: 'change' },
+                        email: { required: true, message: 'El email es requerido', trigger: 'blur' },
+                        numeroPasaporte: { required: true, message: 'El número de pasaporte es requerido', trigger: 'blur' }
+                    },
+                    listaClientes: []
                 }
             },
             methods: {
-
+                getAutocompleteClientes: function (texto, cb) {
+                    if (texto.length > 1) {
+                        axios.get('@Url.Action("AutocompleteCliente", "Clientes", new { Area="Catalogos"})?texto=' + texto)
+                        .then(response => {
+                            if (response.data.length > 0) cb(response.data)
+                            else {
+                                this.cliente.actualizar = true
+                                this.cliente.datos = {
+                                    id: -1,
+                                    nombre: texto,
+                                    edad: null,
+                                    fechaNacimiento: null,
+                                    sexo: null,
+                                    telefono: null,
+                                    nombreDoctor: null,
+                                    email: null,
+                                    numeroPasaporte: null,
+                                    usuario: null
+                                }
+                                cb(["No se encontraron clientes..."]);
+                            }
+                        }).catch(e => {
+                            this.cliente.actualizar = true
+                            this.cliente.datos = {
+                                id: -1,
+                                nombre: texto,
+                                edad: null,
+                                fechaNacimiento: null,
+                                sexo: null,
+                                telefono: null,
+                                nombreDoctor: null,
+                                email: null,
+                                numeroPasaporte: null,
+                                usuario: null
+                            }
+                            cb(["No se cargaron los clientes..."]);
+                        });
+                    } else {
+                        this.cliente.actualizar = true
+                        this.cliente.datos = {
+                            id: -1,
+                            nombre: texto,
+                            edad: null,
+                            fechaNacimiento: null,
+                            sexo: null,
+                            telefono: null,
+                            nombreDoctor: null,
+                            email: null,
+                            numeroPasaporte: null,
+                            usuario: null
+                        }
+                        cb([]);
+                    }
+                },
+                autocompleteClienteSeleccionar: async function (item) {
+                    await axios.get('@Url.Action("GetCliente", "Clientes", new { Area="Catalogos"})?idCliente=' + item.id)
+                        .then(response => {
+                        if (response.data != null) {
+                            this.cliente.datos = response.data
+                        } else {
+                            this.cliente.datos.id = -1
+                        }
+                    }).catch(e => {
+                        this.$message.error('Error al obtener los datos del cliente.');
+                    });
+                },
+                autocompleteClienteLimpiar: function () {
+                    this.cliente.datos = {
+                        id: -1,
+                        nombre: null,
+                        edad: null,
+                        fechaNacimiento: null,
+                        sexo: null,
+                        telefono: null,
+                        nombreDoctor: null,
+                        email: null,
+                        numeroPasaporte: null,
+                        usuario: null
+                    }
+                }
             },
             mounted: function () {
-                
+
             }
         });
     </script>

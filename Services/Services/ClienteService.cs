@@ -9,6 +9,7 @@ using Dapper;
 using Models.DTOs.Cliente;
 using System.Collections.Generic;
 using System.Linq;
+using Models.DTOs;
 
 namespace Services.Services
 {
@@ -145,6 +146,21 @@ namespace Services.Services
             }
 
             return mensaje;
+        }
+
+        public List<ListaDTO> AutocompleteCliente(string texto) {
+            List<ListaDTO> clientes;
+
+            using (var con = _db) {
+                try {
+                    clientes = con.Query<ListaDTO>($"select id, nombre as item from LabDelCaribe.Cliente where nombre like '%{texto}%'").ToList();
+                }
+                catch {
+                    clientes = new List<ListaDTO>();
+                }
+            }
+
+            return clientes;
         }
     }
 }

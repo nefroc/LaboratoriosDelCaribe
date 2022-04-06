@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{CCA55C13-A0DC-4B07-A048-9A78940B3E4B}|Default">
   <MonoDevelop.Ide.ItemProperties.LabCaribeWeb PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Covid/Views/CovidTest/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LabCaribeWeb/Areas/Catalogos/Views/Clientes/Index.cshtml">
     <Files>
       <File FileName="LabCaribeWeb/Controllers/API/CovidTestController.cs" Line="16" Column="10" />
-      <File FileName="Services/Services/CovidTestService.cs" Line="17" Column="6" />
-      <File FileName="Services/Interfaces/ICovidTestService.cs" Line="7" Column="28" />
-      <File FileName="LabCaribeWeb/Areas/Covid/Controllers/CovidTestController.cs" Line="28" Column="10" />
-      <File FileName="LabCaribeWeb/Areas/Covid/Views/CovidTest/Index.cshtml" Line="17" Column="48" />
-      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Clientes/Index.cshtml" Line="147" Column="24" />
+      <File FileName="Services/Services/CovidTestService.cs" />
+      <File FileName="Services/Interfaces/ICovidTestService.cs" />
+      <File FileName="LabCaribeWeb/Areas/Covid/Controllers/CovidTestController.cs" />
+      <File FileName="LabCaribeWeb/Areas/Covid/Views/CovidTest/Index.cshtml" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Views/Clientes/Index.cshtml" Line="209" Column="42" />
+      <File FileName="LabCaribeWeb/Areas/Catalogos/Controllers/ClientesController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,8 +17,11 @@
             <Node name="LabCaribeWeb" expanded="True">
               <Node name="Areas" expanded="True">
                 <Node name="Catalogos" expanded="True">
+                  <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
-                    <Node name="Clientes" expanded="True" />
+                    <Node name="Clientes" expanded="True">
+                      <Node name="Index.cshtml" selected="True" />
+                    </Node>
                   </Node>
                 </Node>
                 <Node name="Covid" expanded="True">
@@ -29,12 +33,11 @@
               </Node>
               <Node name="Controllers" expanded="True">
                 <Node name="API" expanded="True" />
-                <Node name="HomeController.cs" selected="True" />
               </Node>
             </Node>
             <Node name="Models" expanded="True">
               <Node name="DTOs" expanded="True">
-                <Node name="CovidTest" expanded="True" />
+                <Node name="Cliente" expanded="True" />
               </Node>
             </Node>
             <Node name="Services" expanded="True">

@@ -4,3 +4,7 @@
 LabCaribeWeb/.DS_Store
 *.dll
 *.pdb
+*.json
+*.cache
+*.dll
+*.pdb

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Models.DTOs;
 using Models.DTOs.Cliente;
 
 namespace Services.Interfaces
@@ -10,5 +11,6 @@ namespace Services.Interfaces
         List<ClienteDTO> GetListaClientes();
         ClienteDTO GetCliente(int idCliente);
         string SetEliminarCliente(int id);
+        List<ListaDTO> AutocompleteCliente(string texto);
     }
 }
